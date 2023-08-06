@@ -75,6 +75,7 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
             stmt.setDate(1, (Date) item.getArrivalDate());
             stmt.setDate(2, (Date) item.getCheckOutDate());
             stmt.setInt(3, item.getGuest());
+            stmt.setInt(4, item.getId());
             stmt.executeUpdate();
             return item;
         } catch (SQLException e) {
