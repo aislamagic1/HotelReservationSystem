@@ -73,6 +73,7 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
             PreparedStatement stmt = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
             stmt.setDate(1, (Date) item.getArrivalDate());
             stmt.setDate(2, (Date) item.getCheckOutDate());
+            stmt.setInt(3, item.getGuest());
             stmt.executeUpdate();
             return item;
         } catch (SQLException e) {
