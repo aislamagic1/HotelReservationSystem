@@ -5,6 +5,7 @@ import jdk.jfr.Category;
 
 import java.io.FileInputStream;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -102,6 +103,24 @@ public class GuestsDaoSQLImpl implements GuestsDao{
 
     @Override
     public List<Guests> getAll() {
-        return null;
+        String query = "SELECT * FROM Guests";
+        List<Guests> guests = new ArrayList<Guests>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Guests guest = new Guests();
+                guest.setId(rs.getInt("Guest_id"));
+                guest.setFirstName(rs.getString("First_name"));
+                guest.setLastName(rs.getString("Last_name"));
+                guest.setEmail(rs.getString("eMail"));
+                guest.setPassword(rs.getString("password"));
+                guests.add(guest);
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return guests;
     }
 }
