@@ -68,6 +68,16 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
 
     @Override
     public Reservations update(Reservations item) {
+        String update = "UPDATE Guests SET Arrival_date = ?, Check_out_date = ?, Guest_id = ? WHERE Reservation_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
+            stmt.setDate(1, (Date) item.getArrivalDate());
+            stmt.setDate(2, (Date) item.getCheckOutDate());
+            stmt.executeUpdate();
+            return item;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
