@@ -1,10 +1,10 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.domain.Rooms;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.util.List;
 import java.util.Properties;
 
@@ -29,6 +29,25 @@ public class RoomsDaoSQLImpl implements RoomsDao{
 
     @Override
     public Rooms getById(int id) {
+        String query = "SELECT * FROM Rooms WHERE Room_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Rooms room = new Rooms();
+                room.setId(rs.getInt("Room_id"));
+                room.setOccupancy(rs.getInt("Occupancy"));
+                room.setReservationId(rs.getInt("Reservations_id"));
+                room.setRoomTypeID(rs.getInt("Room_type_id"));
+                rs.close();
+                return room;
+            }else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
