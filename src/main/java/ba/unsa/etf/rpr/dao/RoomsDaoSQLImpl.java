@@ -53,6 +53,17 @@ public class RoomsDaoSQLImpl implements RoomsDao{
 
     @Override
     public Rooms add(Rooms item) {
+        String insert = "INSERT INTO Rooms (Occupancy, Reservations_id, Room_type_id) VALUES (?, ?, ?)";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, item.getOccupancy());
+            stmt.setInt(2, item.getReservationId());
+            stmt.setInt(3, item.getRoomTypeID());
+            stmt.executeUpdate();
+            return item;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
