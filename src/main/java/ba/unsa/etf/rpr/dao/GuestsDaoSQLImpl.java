@@ -42,6 +42,7 @@ public class GuestsDaoSQLImpl implements GuestsDao{
                 guest.setFirstName(rs.getString("firstName"));
                 guest.setLastName(rs.getString("lastName"));
                 guest.setPassword(rs.getString("password"));
+                rs.close();
                 return guest;
             }else{
                 return null;
@@ -54,6 +55,18 @@ public class GuestsDaoSQLImpl implements GuestsDao{
 
     @Override
     public Guests add(Guests item) {
+        String insert = "INSERT INTO Guests (First_name, Last_name, eMail, password) VALUES (?, ?, ?, ?)";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, item.getFirstName());
+            stmt.setString(2, item.getLastName());
+            stmt.setString(3, item.getEmail());
+            stmt.setString(4, item.getPassword());
+            stmt.executeUpdate();
+            return item;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
