@@ -1,13 +1,12 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Guests;
+import jdk.jfr.Category;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 
 public class GuestsDaoSQLImpl implements GuestsDao{
@@ -32,6 +31,24 @@ public class GuestsDaoSQLImpl implements GuestsDao{
 
     @Override
     public Guests getById(int id) {
+        String query = "SELECT * FROM Guests WHERE id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Guests guest = new Guests();
+                guest.setId(rs.getInt("id"));
+                guest.setFirstName(rs.getString("firstName"));
+                guest.setLastName(rs.getString("lastName"));
+                guest.setPassword(rs.getString("password"));
+                return guest;
+            }else{
+                return null;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
