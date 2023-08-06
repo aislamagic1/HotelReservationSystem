@@ -11,8 +11,8 @@ import java.util.Objects;
 public class Rooms {
     private int id;
     private Integer occupancy;
-    private Reservations reservation;
-    private RoomTypes roomType;
+    private int reservationId;
+    private int roomTypeID;
 
     public int getId() {
         return id;
@@ -30,20 +30,20 @@ public class Rooms {
         this.occupancy = occupancy;
     }
 
-    public Reservations getReservation() {
-        return reservation;
+    public int getReservationId() {
+        return reservationId;
     }
 
-    public void setReservation(Reservations reservation) {
-        this.reservation = reservation;
+    public void setReservationId(int reservationId) {
+        this.reservationId = reservationId;
     }
 
-    public RoomTypes getRoomType() {
-        return roomType;
+    public int getRoomTypeID() {
+        return roomTypeID;
     }
 
-    public void setRoomType(RoomTypes roomType) {
-        this.roomType = roomType;
+    public void setRoomTypeID(int roomTypeID) {
+        this.roomTypeID = roomTypeID;
     }
 
     @Override
@@ -51,8 +51,8 @@ public class Rooms {
         return "Rooms{" +
                 "id=" + id +
                 ", occupancy=" + occupancy +
-                ", reservation=" + reservation +
-                ", roomType=" + roomType +
+                ", reservationId=" + reservationId +
+                ", roomTypeID=" + roomTypeID +
                 '}';
     }
 
@@ -61,11 +61,11 @@ public class Rooms {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rooms rooms = (Rooms) o;
-        return id == rooms.id && Objects.equals(occupancy, rooms.occupancy) && reservation.equals(rooms.reservation) && roomType.equals(rooms.roomType);
+        return id == rooms.id && reservationId == rooms.reservationId && roomTypeID == rooms.roomTypeID && Objects.equals(occupancy, rooms.occupancy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, occupancy, reservation, roomType);
+        return Objects.hash(id, occupancy, reservationId, roomTypeID);
     }
 }
