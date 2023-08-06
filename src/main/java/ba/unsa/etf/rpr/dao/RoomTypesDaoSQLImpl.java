@@ -1,10 +1,10 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.RoomTypes;
+import ba.unsa.etf.rpr.domain.Rooms;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.util.List;
 import java.util.Properties;
 
@@ -29,6 +29,25 @@ public class RoomTypesDaoSQLImpl implements RoomTypesDao{
 
     @Override
     public RoomTypes getById(int id) {
+        String query = "SELECT * FROM Room_Types WHERE Room_type_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                RoomTypes roomType = new RoomTypes();
+                roomType.setId(rs.getInt("Room_type_id"));
+                roomType.setRoomType(rs.getString("Room_type"));
+                roomType.setNumPersons(rs.getInt("Num_persons"));
+                roomType.setRoomPrice(rs.getDouble("Room_price"));
+                rs.close();
+                return roomType;
+            }else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
