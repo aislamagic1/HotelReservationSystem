@@ -86,7 +86,14 @@ public class RoomsDaoSQLImpl implements RoomsDao{
 
     @Override
     public void delete(int id) {
-
+        String query = "DELETE FROM Rooms WHERE Room_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
