@@ -72,6 +72,19 @@ public class GuestsDaoSQLImpl implements GuestsDao{
 
     @Override
     public Guests update(Guests item) {
+        String update = "UPDATE Guests SET First_name = ?, Last_name = ?, eMail = ?, password = ? WHERE Guest_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, item.getFirstName());
+            stmt.setString(2, item.getLastName());
+            stmt.setString(3, item.getEmail());
+            stmt.setString(4, item.getPassword());
+            stmt.setInt(5, item.getId());
+            stmt.executeUpdate();
+            return item;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
