@@ -39,9 +39,10 @@ public class GuestsDaoSQLImpl implements GuestsDao{
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 Guests guest = new Guests();
-                guest.setId(rs.getInt("id"));
-                guest.setFirstName(rs.getString("firstName"));
-                guest.setLastName(rs.getString("lastName"));
+                guest.setId(rs.getInt("Guest_id"));
+                guest.setFirstName(rs.getString("First_name"));
+                guest.setLastName(rs.getString("Last_name"));
+                guest.setEmail(rs.getString("eMail"));
                 guest.setPassword(rs.getString("password"));
                 rs.close();
                 return guest;
