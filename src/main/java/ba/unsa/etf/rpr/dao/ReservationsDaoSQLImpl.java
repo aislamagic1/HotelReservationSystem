@@ -3,8 +3,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Reservations;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.util.List;
 import java.util.Properties;
 
@@ -29,6 +28,25 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
 
     @Override
     public Reservations getById(int id) {
+        String query = "SELECT * FROM reservations WHERE Reservation_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                Reservations reservation = new Reservations();
+                reservation.setId(rs.getInt("Reservation_id"));
+                reservation.setArrivalDate(rs.getDate("Arrival_date"));
+                reservation.setCheckOutDate(rs.getDate("Check_out_date"));
+                reservation.setGuest(rs.getInt("Guest_id"));
+                rs.close();
+                return reservation;
+            }else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
