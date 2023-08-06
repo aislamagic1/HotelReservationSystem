@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.domain.Reservations;
 
 import java.io.FileInputStream;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -96,6 +97,23 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
 
     @Override
     public List<Reservations> getAll() {
-        return null;
+        String query = "SELECT * FROM Reservations";
+        List<Reservations> reservations = new ArrayList<Reservations>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Reservations reservation = new Reservations();
+                reservation.setId(rs.getInt("Reservation_id"));
+                reservation.setArrivalDate(rs.getDate("Arrival_date"));
+                reservation.setCheckOutDate(rs.getDate("Check_out_date"));
+                reservation.setGuest(rs.getInt("Guest_id"));
+                reservations.add(reservation);
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return reservations;
     }
 }
