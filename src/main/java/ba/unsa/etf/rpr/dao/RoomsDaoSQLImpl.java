@@ -5,6 +5,7 @@ import ba.unsa.etf.rpr.domain.Rooms;
 
 import java.io.FileInputStream;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -98,6 +99,23 @@ public class RoomsDaoSQLImpl implements RoomsDao{
 
     @Override
     public List<Rooms> getAll() {
-        return null;
+        String query = "SELECT * FROM Rooms";
+        List<Rooms> rooms = new ArrayList<Rooms>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Rooms room = new Rooms();
+                room.setId(rs.getInt("Room_id"));
+                room.setOccupancy(rs.getInt("Occupancy"));
+                room.setReservationId(rs.getInt("Reservations_id"));
+                room.setRoomTypeID(rs.getInt("Room_type_id"));
+                rooms.add(room);
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return rooms;
     }
 }
