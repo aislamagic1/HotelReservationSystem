@@ -90,7 +90,14 @@ public class GuestsDaoSQLImpl implements GuestsDao{
 
     @Override
     public void delete(int id) {
-
+        String query = "DELETE FROM Guests WHERE Guest_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
