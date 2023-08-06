@@ -69,6 +69,18 @@ public class RoomsDaoSQLImpl implements RoomsDao{
 
     @Override
     public Rooms update(Rooms item) {
+        String update = "UPDATE Rooms SET Occupancy = ?, Reservations_id = ?, Room_type_id = ? WHERE Room_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, item.getOccupancy());
+            stmt.setInt(2, item.getReservationId());
+            stmt.setInt(3, item.getRoomTypeID());
+            stmt.setInt(4, item.getId());
+            stmt.executeUpdate();
+            return item;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
