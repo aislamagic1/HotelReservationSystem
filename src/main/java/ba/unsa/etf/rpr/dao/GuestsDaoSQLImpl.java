@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Guests;
-import jdk.jfr.Category;
 
 import java.io.FileInputStream;
 import java.sql.*;
