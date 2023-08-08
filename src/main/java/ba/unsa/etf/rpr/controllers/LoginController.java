@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.controllers;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -55,4 +56,7 @@ public class LoginController {
         );
     }
 
+    public void loginClick(ActionEvent actionEvent) {
+
+    }
 }
