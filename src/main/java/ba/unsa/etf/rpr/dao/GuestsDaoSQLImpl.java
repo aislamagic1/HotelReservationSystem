@@ -124,8 +124,33 @@ public class GuestsDaoSQLImpl implements GuestsDao{
         return guests;
     }
 
+
+    /**
+     * Method that finds guest with given email and password
+     * @param email email of guest
+     * @param password password of guest
+     * @return guest object with given eamil and password
+     */
     @Override
     public Guests getGuestByEmailAndPassword(String email, String password) {
-        return null;
+        String query = "SELECT * FROM Guests WHERE eMail = ? AND password = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+            Guests guest = new Guests();
+            while(rs.next()){
+                guest.setId(rs.getInt("Guest_id"));
+                guest.setFirstName(rs.getString("First_name"));
+                guest.setLastName(rs.getString("Last_name"));
+                guest.setEmail(rs.getString("eMail"));
+                guest.setPassword(rs.getString("password"));
+            }
+            rs.close();
+            return guest;
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 }
