@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 public class LoginController {
     public TextField fieldUsername;
-    public PasswordField passwordUsername;
+    public PasswordField fieldPassword;
 
     private void wrongUsername(){
         fieldUsername.getStyleClass().removeAll("correctField");
@@ -17,6 +17,15 @@ public class LoginController {
     private void correctUsername(){
         fieldUsername.getStyleClass().removeAll("wrongField");
         fieldUsername.getStyleClass().add("correctField");
+    }
+
+    private void wrongPassword(){
+        fieldPassword.getStyleClass().removeAll("correctField");
+        fieldPassword.getStyleClass().add("wrongField");
+    }
+    private void correctPassword(){
+        fieldPassword.getStyleClass().removeAll("wrongField");
+        fieldPassword.getStyleClass().add("correctField");
     }
 
     @FXML
@@ -28,6 +37,18 @@ public class LoginController {
                         wrongUsername();
                     }else{
                         correctUsername();
+                    }
+            }
+        }
+        );
+
+        fieldPassword.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+                public void changed(ObservableValue<? extends String> observableValue, String o, String n){
+                    if(fieldPassword.getText().trim().isEmpty()){
+                        wrongPassword();
+                    }else{
+                        correctPassword();
                     }
             }
         }
