@@ -10,4 +10,5 @@ import ba.unsa.etf.rpr.domain.Guests;
 
 public interface GuestsDao extends Dao<Guests>{
 
+    public Guests getGuestByEmailAndPassword(String email, String password);
 }

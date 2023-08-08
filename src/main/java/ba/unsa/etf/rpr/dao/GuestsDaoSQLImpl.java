@@ -123,4 +123,9 @@ public class GuestsDaoSQLImpl implements GuestsDao{
         }
         return guests;
     }
+
+    @Override
+    public Guests getGuestByEmailAndPassword(String email, String password) {
+        return null;
+    }
 }
