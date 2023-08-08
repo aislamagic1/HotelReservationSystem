@@ -5,3 +5,11 @@
 #registerButton {
 -fx-background-color: lightgreen;
 }
+
+.correctField{
+-fx-background-color: lightgreen;
+}
+
+.wrongField{
+-fx-background-color: lightpink;
+}
