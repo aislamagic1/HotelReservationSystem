@@ -1,5 +1,8 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.dao.GuestsDao;
+import ba.unsa.etf.rpr.dao.GuestsDaoSQLImpl;
+import ba.unsa.etf.rpr.domain.Guests;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -90,6 +94,20 @@ public class RegisterController {
         }else if(password.getText().isEmpty()){
             setWrongField(password);
             System.out.println("Password must contain at least 5 characters!");
+        }else{
+            Guests guest = new Guests();
+            GuestsDao guestDao = new GuestsDaoSQLImpl();
+            List<Guests> listOfGuests = guestDao.getAll();
+            eMailError.setText("");
+            for(Guests x : listOfGuests){
+                if(x.getEmail().equals(eMail.getText())){
+                    eMail.getStyleClass().removeAll("correctField");
+                    eMail.getStyleClass().add("wrongField");
+                    eMailError.setText("Email already in use!");
+                    System.out.println("Email already in use. Please try again.");
+                    return;
+                }
+            }
         }
     }
 }
