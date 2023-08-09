@@ -21,11 +21,25 @@ public class RegisterController {
 
     public TextField password;
 
+    private void checkEmptyTextField(TextField x){
+        if(x.getText().trim().isEmpty()){
+            x.getStyleClass().removeAll("correctField");
+            x.getStyleClass().add("wrongField");
+        }else{
+            x.getStyleClass().removeAll("wrongField");
+            x.getStyleClass().add("correctField");
+        }
+    }
+
     @FXML
     void initialize(){
-        firstName.textProperty().addListener((observableValue, odlVal, newVal) ->{});
+        firstName.textProperty().addListener((observableValue, odlVal, newVal) ->{
 
-        lastName.textProperty().addListener((observableValue, odlVal, newVal) ->{});
+        });
+
+        lastName.textProperty().addListener((observableValue, odlVal, newVal) ->{
+
+        });
     }
 
     public void returnClick(ActionEvent actionEvent) throws IOException {
