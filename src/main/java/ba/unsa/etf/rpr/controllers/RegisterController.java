@@ -34,19 +34,19 @@ public class RegisterController {
     @FXML
     void initialize(){
         firstName.textProperty().addListener((observableValue, odlVal, newVal) ->{
-
+            checkEmptyTextField(firstName);
         });
 
         lastName.textProperty().addListener((observableValue, odlVal, newVal) ->{
-
+            checkEmptyTextField(lastName);
         });
 
         eMail.textProperty().addListener((observableValue, odlVal, newVal) ->{
-
+            checkEmptyTextField(eMail);
         });
 
         password.textProperty().addListener((observableValue, odlVal, newVal) ->{
-
+            checkEmptyTextField(password);
         });
     }
 
