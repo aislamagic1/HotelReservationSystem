@@ -57,6 +57,14 @@ public class LoginController {
     }
 
     public void loginClick(ActionEvent actionEvent) {
-
+        if(fieldUsername.getText().isEmpty()){
+            fieldUsername.getStyleClass().add("wrongField");
+            System.out.println("Empty email");
+        }else if(fieldPassword.getText().isEmpty()){
+            fieldPassword.getStyleClass().add("wrongField");
+            System.out.println("Empty password");
+        }
     }
 }
+
+
