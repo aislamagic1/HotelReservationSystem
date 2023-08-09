@@ -68,7 +68,7 @@ public class RegisterController {
         });
     }
 
-    public void returnClick(ActionEvent actionEvent) throws IOException {
+    public void returnClick() throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
         Parent root = loader.load();
@@ -81,7 +81,7 @@ public class RegisterController {
         System.out.println("Returning to login screen");
     }
 
-    public void createNewAccountBtnClick(ActionEvent actionEvent) {
+    public void createNewAccountBtnClick(ActionEvent actionEvent) throws IOException {
         if(firstName.getText().isEmpty()){
             setWrongField(firstName);
             System.out.println("Enter first name!");
@@ -114,6 +114,7 @@ public class RegisterController {
             guest.setPassword(password.getText());
             guestDao.add(guest);
             System.out.println("Your account has been registered!");
+            returnClick();
         }
     }
 }
