@@ -1,0 +1,7 @@
+.wrongField{
+-fx-background-color: lightpink;
+}
+
+.rightField{
+-fx-background-color: lightgreen;
+}
