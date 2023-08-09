@@ -75,6 +75,10 @@ public class LoginController {
                 System.out.println("Incorrect email or password. Please try again.");
                 wrongPassword();
                 wrongUsername();
+            }else{
+                correctUsername();
+                correctPassword();
+                System.out.println("Login successful");
             }
         }
     }
