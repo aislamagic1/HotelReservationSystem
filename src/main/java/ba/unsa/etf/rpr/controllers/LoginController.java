@@ -7,14 +7,23 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Objects;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class LoginController {
     public TextField fieldUsername;
     public PasswordField fieldPassword;
+    public Button loginButton;
 
     private void wrongUsername(){
         fieldUsername.getStyleClass().removeAll("correctField");
@@ -61,7 +70,7 @@ public class LoginController {
         );
     }
 
-    public void loginClick(ActionEvent actionEvent) {
+    public void loginClick(ActionEvent actionEvent) throws IOException {
         if(fieldUsername.getText().isEmpty()){
             fieldUsername.getStyleClass().add("wrongField");
             System.out.println("Empty email");
@@ -79,6 +88,14 @@ public class LoginController {
                 correctUsername();
                 correctPassword();
                 System.out.println("Login successful");
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-menu.fxml"));
+                Parent root = loader.load();
+                stage.setTitle("Main Menu");
+                stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                stage.show();
+                Stage primaryStage = (Stage) loginButton.getScene().getWindow();
+                primaryStage.hide();
             }
         }
     }
