@@ -31,6 +31,10 @@ public class RegisterController {
         }
     }
 
+    private void isEmptyField(TextField x){
+        x.getStyleClass().add("wrongField");
+    }
+
     @FXML
     void initialize(){
         firstName.textProperty().addListener((observableValue, odlVal, newVal) ->{
@@ -61,5 +65,21 @@ public class RegisterController {
         Stage primaryStage = (Stage) returnButton.getScene().getWindow();
         primaryStage.hide();
         System.out.println("Returning to login screen");
+    }
+
+    public void createNewAccountBtnClick(ActionEvent actionEvent) {
+        if(firstName.getText().isEmpty()){
+            isEmptyField(firstName);
+            System.out.println("Enter first name!");
+        }else if(lastName.getText().isEmpty()){
+            isEmptyField(lastName);
+            System.out.println("Enter last name!");
+        }else if(eMail.getText().isEmpty()){
+            isEmptyField(eMail);
+            System.out.println("Enter email!");
+        }else if(password.getText().isEmpty()){
+            isEmptyField(password);
+            System.out.println("Enter password!");
+        }
     }
 }
