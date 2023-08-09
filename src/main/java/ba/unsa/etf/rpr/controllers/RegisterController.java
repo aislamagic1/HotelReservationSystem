@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -20,6 +21,8 @@ public class RegisterController {
     public TextField eMail;
 
     public TextField password;
+    public Label eMailError;
+    public Label passwordError;
 
     private void checkEmptyTextField(TextField x){
         if(x.getText().trim().isEmpty()){
@@ -31,7 +34,7 @@ public class RegisterController {
         }
     }
 
-    private void isEmptyField(TextField x){
+    private void setWrongField(TextField x){
         x.getStyleClass().add("wrongField");
     }
 
@@ -50,7 +53,14 @@ public class RegisterController {
         });
 
         password.textProperty().addListener((observableValue, odlVal, newVal) ->{
-            checkEmptyTextField(password);
+            if(newVal.trim().length() < 5){
+                passwordError.setText("Password must contain at least 5 characters!");
+                password.getStyleClass().removeAll("correctField");
+                password.getStyleClass().add("wrongField");
+            }else{
+                checkEmptyTextField(password);
+                passwordError.setText("");
+            }
         });
     }
 
@@ -69,17 +79,17 @@ public class RegisterController {
 
     public void createNewAccountBtnClick(ActionEvent actionEvent) {
         if(firstName.getText().isEmpty()){
-            isEmptyField(firstName);
+            setWrongField(firstName);
             System.out.println("Enter first name!");
         }else if(lastName.getText().isEmpty()){
-            isEmptyField(lastName);
+            setWrongField(lastName);
             System.out.println("Enter last name!");
         }else if(eMail.getText().isEmpty()){
-            isEmptyField(eMail);
+            setWrongField(eMail);
             System.out.println("Enter email!");
         }else if(password.getText().isEmpty()){
-            isEmptyField(password);
-            System.out.println("Enter password!");
+            setWrongField(password);
+            System.out.println("Password must contain at least 5 characters!");
         }
     }
 }
