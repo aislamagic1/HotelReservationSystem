@@ -40,7 +40,7 @@
         <Label text="Password:" GridPane.rowIndex="3" />
         <PasswordField fx:id="fieldPassword" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         <TextField fx:id="fieldUsername" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="196.0" text="Register" GridPane.rowIndex="4" />
+        <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerClick" prefHeight="25.0" prefWidth="196.0" text="Register" GridPane.rowIndex="4" />
         <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginClick" prefHeight="25.0" prefWidth="203.0" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="4" />
     </children>
     <padding>

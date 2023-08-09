@@ -99,6 +99,10 @@ public class LoginController {
             }
         }
     }
+
+    public void registerClick(ActionEvent actionEvent) {
+
+    }
 }
 
 
