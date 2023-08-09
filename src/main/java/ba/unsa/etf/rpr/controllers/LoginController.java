@@ -1,11 +1,16 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.dao.GuestsDao;
+import ba.unsa.etf.rpr.dao.GuestsDaoSQLImpl;
+import ba.unsa.etf.rpr.domain.Guests;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.util.Objects;
 
 public class LoginController {
     public TextField fieldUsername;
@@ -63,6 +68,14 @@ public class LoginController {
         }else if(fieldPassword.getText().isEmpty()){
             fieldPassword.getStyleClass().add("wrongField");
             System.out.println("Empty password");
+        }else{
+            GuestsDao guestsDao = new GuestsDaoSQLImpl();
+            Guests guest = guestsDao.getGuestByEmailAndPassword(fieldUsername.getText(), fieldPassword.getText());
+            if(guest.getEmail() == null || guest.getPassword() == null){
+                System.out.println("Incorrect email or password. Please try again.");
+                wrongPassword();
+                wrongUsername();
+            }
         }
     }
 }
