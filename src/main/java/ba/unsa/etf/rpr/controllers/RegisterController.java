@@ -40,6 +40,14 @@ public class RegisterController {
         lastName.textProperty().addListener((observableValue, odlVal, newVal) ->{
 
         });
+
+        eMail.textProperty().addListener((observableValue, odlVal, newVal) ->{
+
+        });
+
+        password.textProperty().addListener((observableValue, odlVal, newVal) ->{
+
+        });
     }
 
     public void returnClick(ActionEvent actionEvent) throws IOException {
