@@ -108,6 +108,12 @@ public class RegisterController {
                     return;
                 }
             }
+            guest.setFirstName(firstName.getText());
+            guest.setLastName(lastName.getText());
+            guest.setEmail(eMail.getText());
+            guest.setPassword(password.getText());
+            guestDao.add(guest);
+            System.out.println("Your account has been registered!");
         }
     }
 }
