@@ -50,11 +50,11 @@
             <Font name="System Bold" size="18.0" />
           </font>
         </Label>
-            <TableView prefHeight="336.0" prefWidth="451.0">
+            <TableView fx:id="tableView" prefHeight="336.0" prefWidth="451.0">
               <columns>
-                  <TableColumn prefWidth="209.0" text="Room Type" />
-                <TableColumn prefWidth="127.0" text="Number of persons" />
-                  <TableColumn prefWidth="114.0" text="Price" />
+                  <TableColumn fx:id="roomType" prefWidth="209.0" text="Room Type" />
+                <TableColumn fx:id="numOfPersons" prefWidth="127.0" text="Number of persons" />
+                  <TableColumn fx:id="Price" prefWidth="114.0" text="Price" />
               </columns>
             </TableView>
       </children>
