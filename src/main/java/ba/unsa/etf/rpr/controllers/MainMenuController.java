@@ -79,6 +79,10 @@ public class MainMenuController {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reservation.fxml"));
             Parent root = loader.load();
+
+            ReservationController reservationController = loader.getController();
+            reservationController.setIdOfRoomType(selectedId + 1);
+
             stage.setTitle("Reservation");
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setResizable(false);
