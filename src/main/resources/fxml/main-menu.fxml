@@ -89,12 +89,12 @@
         </HBox>
         <HBox prefHeight="11.0" prefWidth="600.0" spacing="5.0">
           <children>
-            <Label fx:id="userName" prefHeight="27.0" prefWidth="96.0">
+            <Label fx:id="userName" prefHeight="27.0" prefWidth="181.0">
               <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
               </padding>
             </Label>
-            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonClick" prefHeight="27.0" prefWidth="96.0" text="Logout">
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonClick" prefHeight="27.0" prefWidth="163.0" text="Logout">
               <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
               </padding>

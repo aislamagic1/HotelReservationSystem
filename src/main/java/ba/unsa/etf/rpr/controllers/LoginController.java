@@ -91,6 +91,10 @@ public class LoginController {
                 Stage stage = new Stage();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-menu.fxml"));
                 Parent root = loader.load();
+
+                MainMenuController mainMenuScene = loader.getController();
+                mainMenuScene.displayUserName(guest.getFirstName() + " " + guest.getLastName());
+
                 stage.setTitle("Main Menu");
                 stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 stage.show();
