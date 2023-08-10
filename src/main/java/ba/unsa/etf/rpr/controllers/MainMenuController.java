@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,13 +23,18 @@ public class MainMenuController {
 
     @FXML
     private TableView<RoomTypes> tableView;
-    public TableColumn<RoomTypes, String> roomType;
-    public TableColumn<RoomTypes, Integer> numOfPersons;
-    public TableColumn<RoomTypes, Double> Price;
+    @FXML
+    private TableColumn<RoomTypes, String> roomType;
+    @FXML
+    private TableColumn<RoomTypes, Integer> numOfPersons;
+    @FXML
+    private TableColumn<RoomTypes, Double> price;
 
     @FXML
     public void initialize(){
-
+        roomType.setCellValueFactory(new PropertyValueFactory<RoomTypes, String>("roomType"));
+        numOfPersons.setCellValueFactory(new PropertyValueFactory<RoomTypes, Integer>("numPersons"));
+        price.setCellValueFactory(new PropertyValueFactory<RoomTypes, Double>("price"));
     }
 
     public void displayUserName(String name){
