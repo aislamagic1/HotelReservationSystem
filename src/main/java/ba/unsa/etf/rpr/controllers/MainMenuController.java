@@ -32,4 +32,17 @@ public class MainMenuController {
         primaryStage.hide();
         System.out.println("Returning to login screen.");
     }
+
+    public void logoutMenuClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        Parent root = loader.load();
+        stage.setTitle("Hotel Reservation System");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.show();
+        Stage primaryStage = (Stage) logoutButton.getScene().getWindow();
+        primaryStage.hide();
+        System.out.println("Returning to login screen.");
+    }
 }
