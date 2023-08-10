@@ -81,7 +81,7 @@ public class MainMenuController {
             Parent root = loader.load();
 
             ReservationController reservationController = loader.getController();
-            reservationController.setIdOfRoomType(selectedId + 1);
+            reservationController.setRoomType(tableView.getItems().get(selectedId));
 
             stage.setTitle("Reservation");
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));

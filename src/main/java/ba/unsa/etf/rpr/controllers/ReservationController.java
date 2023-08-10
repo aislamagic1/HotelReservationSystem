@@ -1,11 +1,13 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.domain.RoomTypes;
+
 public class ReservationController {
 
-    private int idOfRoomType;
+    private RoomTypes roomType;
 
-    public void setIdOfRoomType(int id){
-        idOfRoomType = id;
+    public void setRoomType(RoomTypes roomType){
+        this.roomType = roomType;
     }
 
 
