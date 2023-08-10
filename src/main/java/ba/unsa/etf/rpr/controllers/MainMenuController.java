@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,6 +14,11 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class MainMenuController {
     public Button logoutButton;
+    public Label userName;
+
+    public void displayUserName(String name){
+        userName.setText(name);
+    }
 
     public void logoutButtonClick(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
