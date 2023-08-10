@@ -52,9 +52,8 @@
         </Label>
             <TableView prefHeight="336.0" prefWidth="451.0">
               <columns>
-                  <TableColumn prefWidth="106.0" text="Room Type" />
-                <TableColumn prefWidth="117.0" text="Number of persons" />
-                <TableColumn prefWidth="113.0" text="Available" />
+                  <TableColumn prefWidth="209.0" text="Room Type" />
+                <TableColumn prefWidth="127.0" text="Number of persons" />
                   <TableColumn prefWidth="114.0" text="Price" />
               </columns>
             </TableView>
