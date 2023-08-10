@@ -54,7 +54,7 @@
               <columns>
                   <TableColumn fx:id="roomType" prefWidth="209.0" text="Room Type" />
                 <TableColumn fx:id="numOfPersons" prefWidth="127.0" text="Number of persons" />
-                  <TableColumn fx:id="Price" prefWidth="114.0" text="Price" />
+                  <TableColumn fx:id="roomPrice" prefWidth="114.0" text="Price" />
               </columns>
             </TableView>
       </children>
