@@ -50,11 +50,14 @@
             <Font name="System Bold" size="18.0" />
           </font>
         </Label>
-        <ListView prefHeight="358.0" prefWidth="426.0">
-          <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-          </padding>
-        </ListView>
+            <TableView prefHeight="336.0" prefWidth="451.0">
+              <columns>
+                  <TableColumn prefWidth="75.0" text="Column X" />
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn prefWidth="75.0" text="Column X" />
+              </columns>
+            </TableView>
       </children>
       <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
