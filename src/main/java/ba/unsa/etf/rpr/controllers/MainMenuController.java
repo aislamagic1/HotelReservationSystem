@@ -74,12 +74,15 @@ public class MainMenuController {
     }
 
     public void makeReservationBtnClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reservation.fxml"));
-        Parent root = loader.load();
-        stage.setTitle("Reservation");
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setResizable(false);
-        stage.show();
+        int selectedId = tableView.getSelectionModel().getSelectedIndex();
+        if(selectedId != -1) {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reservation.fxml"));
+            Parent root = loader.load();
+            stage.setTitle("Reservation");
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setResizable(false);
+            stage.show();
+        }
     }
 }
