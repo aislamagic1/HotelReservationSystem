@@ -9,7 +9,7 @@
   <left>
     <VBox prefHeight="375.0" prefWidth="164.0" spacing="5.0" BorderPane.alignment="CENTER">
       <children>
-        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="153.0" text="Make Reservation">
+        <Button mnemonicParsing="false" onAction="#makeReservationBtnClick" prefHeight="25.0" prefWidth="153.0" text="Make Reservation">
           <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
           </padding>

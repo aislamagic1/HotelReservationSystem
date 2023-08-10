@@ -72,4 +72,14 @@ public class MainMenuController {
     public void logoutMenuClick(ActionEvent actionEvent) throws IOException {
         returnToLogoutScreen();
     }
+
+    public void makeReservationBtnClick(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reservation.fxml"));
+        Parent root = loader.load();
+        stage.setTitle("Reservation");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.show();
+    }
 }
