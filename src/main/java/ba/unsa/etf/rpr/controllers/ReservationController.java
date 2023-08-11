@@ -24,13 +24,6 @@ public class ReservationController {
 
 
     public void cancelButtonClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-menu.fxml"));
-        Parent root = loader.load();
-        stage.setTitle("Main Menu");
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setResizable(false);
-        stage.show();
         Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
         primaryStage.hide();
     }
