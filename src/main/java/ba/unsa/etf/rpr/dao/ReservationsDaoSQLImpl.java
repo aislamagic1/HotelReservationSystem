@@ -40,6 +40,7 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
                 reservation.setArrivalDate(rs.getDate("Arrival_date"));
                 reservation.setCheckOutDate(rs.getDate("Check_out_date"));
                 reservation.setGuest(rs.getInt("Guest_id"));
+                reservation.setRoom_id(rs.getInt("Room_id"));
                 rs.close();
                 return reservation;
             }else {
@@ -53,12 +54,13 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
 
     @Override
     public Reservations add(Reservations item) {
-        String insert = "INSERT INTO Reservations (Arrival_date, Check_out_date, Guest_id) VALUES (?, ?, ?)";
+        String insert = "INSERT INTO Reservations (Arrival_date, Check_out_date, Guest_id, Room_id) VALUES (?, ?, ?, ?)";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             stmt.setDate(1, (Date) item.getArrivalDate());
             stmt.setDate(2, (Date) item.getCheckOutDate());
             stmt.setInt(3, item.getGuest());
+            stmt.setInt(4, item.getRoom_id());
             stmt.executeUpdate();
             return item;
         }catch (SQLException e){
@@ -69,13 +71,14 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
 
     @Override
     public Reservations update(Reservations item) {
-        String update = "UPDATE Reservations SET Arrival_date = ?, Check_out_date = ?, Guest_id = ? WHERE Reservation_id = ?";
+        String update = "UPDATE Reservations SET Arrival_date = ?, Check_out_date = ?, Guest_id = ?, Room_id = ? WHERE Reservation_id = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
             stmt.setDate(1, (Date) item.getArrivalDate());
             stmt.setDate(2, (Date) item.getCheckOutDate());
             stmt.setInt(3, item.getGuest());
-            stmt.setInt(4, item.getId());
+            stmt.setInt(4, item.getRoom_id());
+            stmt.setInt(5, item.getId());
             stmt.executeUpdate();
             return item;
         } catch (SQLException e) {
@@ -109,6 +112,7 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
                 reservation.setArrivalDate(rs.getDate("Arrival_date"));
                 reservation.setCheckOutDate(rs.getDate("Check_out_date"));
                 reservation.setGuest(rs.getInt("Guest_id"));
+                reservation.setRoom_id(rs.getInt("Room_id"));
                 reservations.add(reservation);
             }
             rs.close();
