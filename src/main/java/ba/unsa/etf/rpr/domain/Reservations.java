@@ -15,6 +15,8 @@ public class Reservations {
     private Date checkOutDate;
     private int guestId;
 
+    private int Room_id;
+
     public int getId() {
         return id;
     }
@@ -47,6 +49,10 @@ public class Reservations {
         this.guestId = guestId;
     }
 
+    public int getRoom_id() { return Room_id; }
+
+    public void setRoom_id(int room_id) { Room_id = room_id; }
+
 
     @Override
     public String toString() {
@@ -55,6 +61,7 @@ public class Reservations {
                 ", arrivalDate=" + arrivalDate +
                 ", checkOutDate=" + checkOutDate +
                 ", guestId=" + guestId +
+                ", Room_id=" + Room_id +
                 '}';
     }
 
@@ -63,11 +70,11 @@ public class Reservations {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reservations that = (Reservations) o;
-        return id == that.id && guestId == that.guestId && Objects.equals(arrivalDate, that.arrivalDate) && Objects.equals(checkOutDate, that.checkOutDate);
+        return id == that.id && guestId == that.guestId && Room_id == that.Room_id && arrivalDate.equals(that.arrivalDate) && checkOutDate.equals(that.checkOutDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, arrivalDate, checkOutDate, guestId);
+        return Objects.hash(id, arrivalDate, checkOutDate, guestId, Room_id);
     }
 }
