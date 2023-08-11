@@ -110,4 +110,25 @@ public class RoomsDaoSQLImpl implements RoomsDao{
         }
         return rooms;
     }
+
+    @Override
+    public List<Rooms> getRoomsWithSameRoomType(int roomTypeId) {
+        String query = "Select * From Rooms WHERE Room_type_id = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1,roomTypeId);
+            ResultSet rs = stmt.executeQuery();
+            List<Rooms> listOfRooms = new ArrayList<>();
+            while(rs.next()){
+                Rooms room = new Rooms();
+                room.setId(rs.getInt("Room_id"));
+                room.setRoomTypeID(rs.getInt("Room_type_id"));
+                listOfRooms.add(room);
+            }
+            return listOfRooms;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
