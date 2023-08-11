@@ -12,5 +12,10 @@ import java.util.List;
 
 public interface RoomsDao extends Dao<Rooms>{
 
+    /**
+     * Method finds every room that is a specific type
+     * @param roomTypeId id of the room type
+     * @return list of the rooms
+     */
     public List<Rooms> getRoomsWithSameRoomType(int roomTypeId);
 }
