@@ -38,8 +38,6 @@ public class RoomsDaoSQLImpl implements RoomsDao{
             if(rs.next()){
                 Rooms room = new Rooms();
                 room.setId(rs.getInt("Room_id"));
-                room.setOccupancy(rs.getInt("Occupancy"));
-                room.setReservationId(rs.getInt("Reservations_id"));
                 room.setRoomTypeID(rs.getInt("Room_type_id"));
                 rs.close();
                 return room;
@@ -54,12 +52,10 @@ public class RoomsDaoSQLImpl implements RoomsDao{
 
     @Override
     public Rooms add(Rooms item) {
-        String insert = "INSERT INTO Rooms (Occupancy, Reservations_id, Room_type_id) VALUES (?, ?, ?)";
+        String insert = "INSERT INTO Rooms (Room_type_id) VALUES (?)";
         try{
             PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, item.getOccupancy());
-            stmt.setInt(2, item.getReservationId());
-            stmt.setInt(3, item.getRoomTypeID());
+            stmt.setInt(1, item.getRoomTypeID());
             stmt.executeUpdate();
             return item;
         }catch (SQLException e){
@@ -70,13 +66,11 @@ public class RoomsDaoSQLImpl implements RoomsDao{
 
     @Override
     public Rooms update(Rooms item) {
-        String update = "UPDATE Rooms SET Occupancy = ?, Reservations_id = ?, Room_type_id = ? WHERE Room_id = ?";
+        String update = "UPDATE Rooms SET Room_type_id = ? WHERE Room_id = ?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, item.getOccupancy());
-            stmt.setInt(2, item.getReservationId());
-            stmt.setInt(3, item.getRoomTypeID());
-            stmt.setInt(4, item.getId());
+            stmt.setInt(1, item.getRoomTypeID());
+            stmt.setInt(2, item.getId());
             stmt.executeUpdate();
             return item;
         } catch (SQLException e) {
@@ -107,8 +101,6 @@ public class RoomsDaoSQLImpl implements RoomsDao{
             while (rs.next()){
                 Rooms room = new Rooms();
                 room.setId(rs.getInt("Room_id"));
-                room.setOccupancy(rs.getInt("Occupancy"));
-                room.setReservationId(rs.getInt("Reservations_id"));
                 room.setRoomTypeID(rs.getInt("Room_type_id"));
                 rooms.add(room);
             }

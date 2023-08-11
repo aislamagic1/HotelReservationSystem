@@ -10,8 +10,6 @@ import java.util.Objects;
 
 public class Rooms {
     private int id;
-    private Integer occupancy;
-    private int reservationId;
     private int roomTypeID;
 
     public int getId() {
@@ -22,21 +20,6 @@ public class Rooms {
         this.id = id;
     }
 
-    public Integer getOccupancy() {
-        return occupancy;
-    }
-
-    public void setOccupancy(Integer occupancy) {
-        this.occupancy = occupancy;
-    }
-
-    public int getReservationId() {
-        return reservationId;
-    }
-
-    public void setReservationId(int reservationId) {
-        this.reservationId = reservationId;
-    }
 
     public int getRoomTypeID() {
         return roomTypeID;
@@ -46,12 +29,11 @@ public class Rooms {
         this.roomTypeID = roomTypeID;
     }
 
+
     @Override
     public String toString() {
         return "Rooms{" +
                 "id=" + id +
-                ", occupancy=" + occupancy +
-                ", reservationId=" + reservationId +
                 ", roomTypeID=" + roomTypeID +
                 '}';
     }
@@ -61,11 +43,11 @@ public class Rooms {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rooms rooms = (Rooms) o;
-        return id == rooms.id && reservationId == rooms.reservationId && roomTypeID == rooms.roomTypeID && Objects.equals(occupancy, rooms.occupancy);
+        return id == rooms.id && roomTypeID == rooms.roomTypeID;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, occupancy, reservationId, roomTypeID);
+        return Objects.hash(id, roomTypeID);
     }
 }
