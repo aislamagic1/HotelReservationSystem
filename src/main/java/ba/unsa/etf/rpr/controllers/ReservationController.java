@@ -75,9 +75,14 @@ public class ReservationController {
             public DateCell call(DatePicker datePicker) {
                 return new DateCell(){
                     @Override
-                    public void updateItem(LocalDate item, boolean empty){
+                    public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
-
+                        if (arrivalDatePicker.getValue() != null) {
+                            if (item.isBefore(arrivalDatePicker.getValue())) {
+                                setDisable(true);
+                                setStyle("-fx-background-color: #ffc0cb;");
+                            }
+                        }
                     }
                 };
             }
