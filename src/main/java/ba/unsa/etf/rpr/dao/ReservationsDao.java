@@ -15,5 +15,11 @@ import java.util.List;
 
 public interface ReservationsDao extends Dao<Reservations>{
 
+    /**
+     * Method finds all arrival and check out dates from database that belong to a
+     * reservation to all room's with the given room type
+     * @param roomTypeId id of the room type
+     * @return list of arrival and check out dates represented with pairs
+     */
     public List<Pair<Date, Date>> getAllSchedulesForRooms(int roomTypeId);
 }
