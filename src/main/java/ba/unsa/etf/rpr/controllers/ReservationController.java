@@ -7,9 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -32,7 +34,12 @@ public class ReservationController {
 
     @FXML
     void initialize(){
-
+        arrivalDatePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(DatePicker datePicker) {
+                return null;
+            }
+        });
     }
 
     public void cancelButtonClick(ActionEvent actionEvent) throws IOException {
