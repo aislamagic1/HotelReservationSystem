@@ -130,11 +130,12 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
                 "WHERE r.Room_id IN ( " +
                 "SELECT r2.Room_id " +
                 "FROM freedb_Hotel_Reservation_System.Rooms r2 " +
-                "WHERE r2.Room_type_id = 2" +
+                "WHERE r2.Room_type_id = ?" +
                 ")";
         List<Pair<java.util.Date, java.util.Date>> result = new ArrayList<>();
         try{
             PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, roomTypeId);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 result.add(new Pair<>(rs.getDate("Arrival_date"), rs.getDate("Check_out_date")));
