@@ -73,7 +73,13 @@ public class ReservationController {
         checkOutDatePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
             @Override
             public DateCell call(DatePicker datePicker) {
-                return null;
+                return new DateCell(){
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty){
+                        super.updateItem(item, empty);
+
+                    }
+                };
             }
         });
     }
