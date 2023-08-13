@@ -125,6 +125,25 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
 
     @Override
     public List<Pair<java.util.Date, java.util.Date>> getAllSchedulesForRooms(int roomTypeId) {
-        return null;
+        String query = "SELECT r.Arrival_date, r.Check_out_date " +
+                "FROM freedb_Hotel_Reservation_System.Reservations r " +
+                "WHERE r.Room_id IN ( " +
+                "SELECT r2.Room_id " +
+                "FROM freedb_Hotel_Reservation_System.Rooms r2 " +
+                "WHERE r2.Room_type_id = 2" +
+                ")";
+        List<Pair<java.util.Date, java.util.Date>> result = new ArrayList<>();
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                result.add(new Pair<>(rs.getDate("Arrival_date"), rs.getDate("Check_out_date")));
+            }
+            rs.close();
+            return result;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }
