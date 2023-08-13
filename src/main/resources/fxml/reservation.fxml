@@ -40,7 +40,7 @@
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>
     </Label>
-    <DatePicker prefHeight="26.0" prefWidth="251.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+    <DatePicker fx:id="checkOutDatePicker" prefHeight="26.0" prefWidth="251.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
       <GridPane.margin>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>

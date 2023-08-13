@@ -30,6 +30,7 @@ public class ReservationController {
     public Button cancelButton;
     public Label priceLabel;
     public DatePicker arrivalDatePicker;
+    public DatePicker checkOutDatePicker;
     private RoomTypes roomType;
     private List<Pair<LocalDate, LocalDate>> dates;
 
@@ -66,6 +67,13 @@ public class ReservationController {
                         }
                     }
                 };
+            }
+        });
+
+        checkOutDatePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(DatePicker datePicker) {
+                return null;
             }
         });
     }
