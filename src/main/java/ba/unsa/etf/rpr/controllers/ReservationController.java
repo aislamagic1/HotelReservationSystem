@@ -57,7 +57,7 @@ public class ReservationController {
                             for(Pair<LocalDate, LocalDate> date : dates){
                                 LocalDate arrival = date.getKey();
                                 LocalDate checkOut = date.getValue();
-                                if(item.equals(arrival) || item.equals(checkOut) || item.isAfter(arrival) || item.isBefore(checkOut)){
+                                if(item.equals(arrival) || item.equals(checkOut) || (item.isAfter(arrival) && item.isBefore(checkOut))){
                                     setDisable(true);
                                     setStyle("-fx-background-color: #ffc0cb;");
                                 }
