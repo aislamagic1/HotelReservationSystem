@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Reservations;
+import javafx.util.Pair;
 
 import java.io.FileInputStream;
 import java.sql.*;
@@ -120,5 +121,10 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
             e.printStackTrace();
         }
         return reservations;
+    }
+
+    @Override
+    public List<Pair<String, Integer>> getAllSchedulesForRooms(int roomTypeId) {
+        return null;
     }
 }
