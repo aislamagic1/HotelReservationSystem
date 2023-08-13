@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -19,6 +20,7 @@ public class ReservationController {
 
     public Button cancelButton;
     public Label priceLabel;
+    public DatePicker arrivalDatePicker;
     private RoomTypes roomType;
 
     public void setRoomType(RoomTypes roomType){
@@ -26,6 +28,11 @@ public class ReservationController {
     }
     public void setRoomPrice(String price){
         priceLabel.setText(price);
+    }
+
+    @FXML
+    void initialize(){
+
     }
 
     public void cancelButtonClick(ActionEvent actionEvent) throws IOException {
