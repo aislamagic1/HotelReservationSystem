@@ -124,7 +124,7 @@ public class ReservationsDaoSQLImpl implements ReservationsDao{
     }
 
     @Override
-    public List<Pair<String, Integer>> getAllSchedulesForRooms(int roomTypeId) {
+    public List<Pair<java.util.Date, java.util.Date>> getAllSchedulesForRooms(int roomTypeId) {
         return null;
     }
 }

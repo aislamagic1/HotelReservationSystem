@@ -15,5 +15,5 @@ import java.util.List;
 
 public interface ReservationsDao extends Dao<Reservations>{
 
-    public List<Pair<String, Integer>> getAllSchedulesForRooms(int roomTypeId);
+    public List<Pair<Date, Date>> getAllSchedulesForRooms(int roomTypeId);
 }
