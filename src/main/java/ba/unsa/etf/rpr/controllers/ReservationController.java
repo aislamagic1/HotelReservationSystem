@@ -31,9 +31,12 @@ public class ReservationController {
     public Label priceLabel;
     public DatePicker arrivalDatePicker;
     private RoomTypes roomType;
+    private List<Pair<LocalDate, LocalDate>> dates;
 
     public void setRoomType(RoomTypes roomType){
         this.roomType = roomType;
+        ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
+        dates = reservationsDao.getAllSchedulesForRooms(roomType.getId());
     }
     public void setRoomPrice(String price){
         priceLabel.setText(price);
@@ -48,8 +51,6 @@ public class ReservationController {
                     @Override
                     public void updateItem(LocalDate item, boolean empty){
                         super.updateItem(item, empty);
-                        ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
-                        List<Pair<LocalDate, LocalDate>> dates = reservationsDao.getAllSchedulesForRooms(roomType.getId());
                         if(item.isBefore(LocalDate.now())){
                             setDisable(true);
                             setStyle("-fx-background-color: #ffc0cb;");
