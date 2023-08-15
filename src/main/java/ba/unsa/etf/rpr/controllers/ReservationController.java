@@ -59,6 +59,7 @@ public class ReservationController {
 
     @FXML
     void initialize(){
+        checkOutDatePicker.setDisable(true);
         arrivalDatePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
             @Override
             public DateCell call(DatePicker datePicker) {
@@ -85,7 +86,11 @@ public class ReservationController {
         });
 
         arrivalDatePicker.valueProperty().addListener((observable, oldValue, newValue) ->{
-
+            if(arrivalDatePicker.getValue() != null){
+                checkOutDatePicker.setDisable(false);
+            }else{
+                checkOutDatePicker.setDisable(true);
+            }
         });
 
         checkOutDatePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
