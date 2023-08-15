@@ -90,6 +90,7 @@ public class MainMenuController {
             ReservationController reservationController = loader.getController();
             reservationController.setRoomType(tableView.getItems().get(selectedId));
             reservationController.setRoomPrice(String.valueOf(tableView.getItems().get(selectedId).getRoomPrice()));
+            reservationController.setGuestId(guestId);
 
             stage.setTitle("Reservation");
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
