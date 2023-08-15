@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author Aldin Islamagic
  */
 
-public class RoomTypes {
+public class RoomTypes implements Idable{
     private int id;
     private String roomType;
     private int numPersons;

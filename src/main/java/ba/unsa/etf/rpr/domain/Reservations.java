@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author Aldin Islamagic
  */
 
-public class Reservations {
+public class Reservations implements Idable{
     private int id;
     private Date arrivalDate;
     private Date checkOutDate;
