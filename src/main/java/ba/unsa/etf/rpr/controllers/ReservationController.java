@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +42,19 @@ public class ReservationController {
     }
     public void setRoomPrice(String price){
         priceLabel.setText(price);
+    }
+
+    private LocalDate getClosestArrivalDate(LocalDate arrivalDate){
+        LocalDate closest = null;
+        long closestDiffernece = Long.MAX_VALUE;
+        for(Pair<LocalDate, LocalDate> date : dates){
+            long differnece = ChronoUnit.DAYS.between(arrivalDate, date.getKey());
+            if(differnece < closestDiffernece){
+                closestDiffernece = differnece;
+                closest = date.getKey();
+            }
+        }
+        return closest;
     }
 
     @FXML
