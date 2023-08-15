@@ -97,6 +97,10 @@ public class ReservationController {
             }
         });
 
+        checkOutDatePicker.valueProperty().addListener((observable, oldValue, newValue) ->{
+
+        });
+
         checkOutDatePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
             @Override
             public DateCell call(DatePicker datePicker) {
