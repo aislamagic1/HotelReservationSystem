@@ -92,7 +92,7 @@ public class ReservationController {
                     public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
                         if (arrivalDatePicker.getValue() != null) {
-                            if (item.isBefore(arrivalDatePicker.getValue())) {
+                            if (item.isBefore(arrivalDatePicker.getValue()) || item.isAfter(getClosestArrivalDate(arrivalDatePicker.getValue()))) {
                                 setDisable(true);
                                 setStyle("-fx-background-color: #ffc0cb;");
                             }
