@@ -86,11 +86,7 @@ public class ReservationController {
         });
 
         arrivalDatePicker.valueProperty().addListener((observable, oldValue, newValue) ->{
-            if(arrivalDatePicker.getValue() != null){
-                checkOutDatePicker.setDisable(false);
-            }else{
-                checkOutDatePicker.setDisable(true);
-            }
+            checkOutDatePicker.setDisable(arrivalDatePicker.getValue() == null);
         });
 
         checkOutDatePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
