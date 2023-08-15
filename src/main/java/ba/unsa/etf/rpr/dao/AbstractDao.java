@@ -33,4 +33,10 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         }
     }
 
+    /**
+     * Method that gets connection from db
+     * @return connection of the db
+     */
+    public Connection getConnection() {return this.connection; }
+
 }
