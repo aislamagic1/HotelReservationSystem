@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.dao.ReservationsDao;
 import ba.unsa.etf.rpr.dao.ReservationsDaoSQLImpl;
+import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.domain.RoomTypes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -136,6 +137,10 @@ public class ReservationController {
             checkOutDatePicker.getStyleClass().add("wrongField");
             System.out.println("Empty check-out date!");
         }else{
+            ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
+            Reservations reservation = new Reservations();
+            reservation.setArrivalDate(Date.from(arrivalDatePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+            reservation.setCheckOutDate(Date.from(checkOutDatePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
             Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
             primaryStage.hide();
         }
