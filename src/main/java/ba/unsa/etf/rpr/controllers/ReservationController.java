@@ -2,8 +2,11 @@ package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.dao.ReservationsDao;
 import ba.unsa.etf.rpr.dao.ReservationsDaoSQLImpl;
+import ba.unsa.etf.rpr.dao.RoomsDao;
+import ba.unsa.etf.rpr.dao.RoomsDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.domain.RoomTypes;
+import ba.unsa.etf.rpr.domain.Rooms;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -141,6 +144,12 @@ public class ReservationController {
             Reservations reservation = new Reservations();
             reservation.setArrivalDate(Date.from(arrivalDatePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
             reservation.setCheckOutDate(Date.from(checkOutDatePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+
+            RoomsDao roomsDao = new RoomsDaoSQLImpl();
+            List<Rooms> rooms = roomsDao.getRoomsWithSameRoomType(roomType.getId());
+
+            reservation.setRoom_id(rooms.get(0).getId());
+
             Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
             primaryStage.hide();
         }
