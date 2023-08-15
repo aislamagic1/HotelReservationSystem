@@ -98,7 +98,9 @@ public class ReservationController {
         });
 
         checkOutDatePicker.valueProperty().addListener((observable, oldValue, newValue) ->{
-
+            if(checkOutDatePicker.getValue() != null){
+                checkOutDatePicker.getStyleClass().removeAll("wrongField");
+            }
         });
 
         checkOutDatePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
