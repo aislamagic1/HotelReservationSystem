@@ -89,6 +89,10 @@ public class ReservationController {
             checkOutDatePicker.setValue(null);
 
             checkOutDatePicker.setDisable(newValue == null);
+
+            if(arrivalDatePicker.getValue() != null){
+                arrivalDatePicker.getStyleClass().removeAll("wrongField");
+            }
         });
 
         checkOutDatePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
@@ -116,7 +120,13 @@ public class ReservationController {
     }
 
     public void makeReservationButton(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
-        primaryStage.hide();
+        if(arrivalDatePicker.getValue() == null){
+            arrivalDatePicker.getStyleClass().add("wrongField");
+            System.out.println("Empty arrival date!");
+        }else{
+            Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
+            primaryStage.hide();
+        }
+
     }
 }
