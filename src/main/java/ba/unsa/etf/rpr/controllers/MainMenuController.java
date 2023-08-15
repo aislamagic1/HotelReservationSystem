@@ -26,6 +26,8 @@ public class MainMenuController {
     public Button logoutButton;
     public Label userName;
 
+    private int guestId;
+
     @FXML
     private TableView<RoomTypes> tableView;
     @FXML
@@ -46,6 +48,11 @@ public class MainMenuController {
         ObservableList<RoomTypes> roomTypesList = FXCollections.observableArrayList(list);
 
         tableView.setItems(roomTypesList);
+    }
+
+
+    public void setGuestId(int id){
+        this.guestId = id;
     }
 
     public void displayUserName(String name){
