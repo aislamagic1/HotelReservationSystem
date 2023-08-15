@@ -68,7 +68,7 @@
         <Insets />
       </GridPane.margin>
     </HBox>
-    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="257.0" text="Make Reservation" GridPane.columnIndex="1" GridPane.rowIndex="3">
+    <Button mnemonicParsing="false" onAction="#makeReservationButton" prefHeight="27.0" prefWidth="257.0" text="Make Reservation" GridPane.columnIndex="1" GridPane.rowIndex="3">
       <GridPane.margin>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>

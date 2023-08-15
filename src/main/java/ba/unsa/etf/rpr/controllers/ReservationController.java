@@ -114,4 +114,9 @@ public class ReservationController {
         Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
         primaryStage.hide();
     }
+
+    public void makeReservationButton(ActionEvent actionEvent) {
+        Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
+        primaryStage.hide();
+    }
 }
