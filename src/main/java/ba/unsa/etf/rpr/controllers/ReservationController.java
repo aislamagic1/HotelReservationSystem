@@ -39,6 +39,8 @@ public class ReservationController {
     private RoomTypes roomType;
     private List<Pair<LocalDate, LocalDate>> dates;
 
+    private int guestId;
+
     public void setRoomType(RoomTypes roomType){
         this.roomType = roomType;
         ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
@@ -46,6 +48,10 @@ public class ReservationController {
     }
     public void setRoomPrice(String price){
         priceLabel.setText(price);
+    }
+
+    public void setGuestId(int id){
+        this.guestId = id;
     }
 
     private LocalDate getClosestArrivalDate(LocalDate arrivalDate){
