@@ -126,6 +126,9 @@ public class ReservationController {
         if(arrivalDatePicker.getValue() == null){
             arrivalDatePicker.getStyleClass().add("wrongField");
             System.out.println("Empty arrival date!");
+        }else if(checkOutDatePicker.getValue() == null){
+            checkOutDatePicker.getStyleClass().add("wrongField");
+            System.out.println("Empty check-out date!");
         }else{
             Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
             primaryStage.hide();
