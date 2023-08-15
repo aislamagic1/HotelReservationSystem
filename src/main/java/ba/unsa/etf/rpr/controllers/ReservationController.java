@@ -48,10 +48,12 @@ public class ReservationController {
         LocalDate closest = null;
         long closestDifference = Long.MAX_VALUE;
         for(Pair<LocalDate, LocalDate> date : dates){
-            long difference = ChronoUnit.DAYS.between(arrivalDate, date.getKey());
-            if(difference < closestDifference){
-                closestDifference = difference;
-                closest = date.getKey();
+            if(date.getKey().isAfter(arrivalDate)){
+                long difference = ChronoUnit.DAYS.between(arrivalDate, date.getKey());
+                if(difference < closestDifference){
+                    closestDifference = difference;
+                    closest = date.getKey();
+                }
             }
         }
         return closest;
@@ -103,7 +105,8 @@ public class ReservationController {
                     public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
                         if (arrivalDatePicker.getValue() != null) {
-                            if (item.equals(arrivalDatePicker.getValue()) || item.isBefore(arrivalDatePicker.getValue()) || item.isAfter(getClosestArrivalDate(arrivalDatePicker.getValue()))) {
+                            LocalDate closestDate = getClosestArrivalDate(arrivalDatePicker.getValue());
+                            if (item.equals(arrivalDatePicker.getValue()) || item.isBefore(arrivalDatePicker.getValue()) || (closestDate != null && item.isAfter(closestDate))) {
                                 setDisable(true);
                                 setStyle("-fx-background-color: #ffc0cb;");
                             }
