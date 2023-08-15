@@ -46,11 +46,11 @@ public class ReservationController {
 
     private LocalDate getClosestArrivalDate(LocalDate arrivalDate){
         LocalDate closest = null;
-        long closestDiffernece = Long.MAX_VALUE;
+        long closestDifference = Long.MAX_VALUE;
         for(Pair<LocalDate, LocalDate> date : dates){
-            long differnece = ChronoUnit.DAYS.between(arrivalDate, date.getKey());
-            if(differnece < closestDiffernece){
-                closestDiffernece = differnece;
+            long difference = ChronoUnit.DAYS.between(arrivalDate, date.getKey());
+            if(difference < closestDifference){
+                closestDifference = difference;
                 closest = date.getKey();
             }
         }
