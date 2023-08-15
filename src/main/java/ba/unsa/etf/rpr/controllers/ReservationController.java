@@ -148,14 +148,16 @@ public class ReservationController {
         }else{
             ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
             Reservations reservation = new Reservations();
-            reservation.setArrivalDate(Date.from(arrivalDatePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-            reservation.setCheckOutDate(Date.from(checkOutDatePicker.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+            reservation.setArrivalDate(java.sql.Date.valueOf(arrivalDatePicker.getValue()));
+            reservation.setCheckOutDate(java.sql.Date.valueOf(checkOutDatePicker.getValue()));
 
             RoomsDao roomsDao = new RoomsDaoSQLImpl();
             List<Rooms> rooms = roomsDao.getRoomsWithSameRoomType(roomType.getId());
 
             reservation.setRoom_id(rooms.get(0).getId());
+            reservation.setGuest(guestId);
 
+            reservationsDao.add(reservation);
             Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
             primaryStage.hide();
         }
