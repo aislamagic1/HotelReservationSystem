@@ -54,6 +54,15 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
      */
     public abstract Map<String, Object> object2row(T object);
 
+    /**
+     * Method that searches object by given id
+     * @param id primary key of entity
+     * @return object with given id
+     */
+    public T getById(int id){
+        return  executeQueryUnique("SELECT * FROM " + this.tableName + " WHERE id = ?", new Object[]{id});
+    }
+
 
     /**
      * Method that executes any kind of query
