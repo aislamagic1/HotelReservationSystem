@@ -13,6 +13,11 @@ public class GuestsDaoSQLImpl extends AbstractDao<Guests> implements GuestsDao{
     }
 
 
+    /**
+     * Method that sets parems. of guest from given attribute
+     * @param rs result set from database
+     * @return guest object
+     */
     @Override
     public Guests row2object(ResultSet rs){
         try {
@@ -29,6 +34,11 @@ public class GuestsDaoSQLImpl extends AbstractDao<Guests> implements GuestsDao{
 
     }
 
+    /**
+     * Method that turns given object to sql query
+     * @param object a bean object for a specific table
+     * @return Map of object
+     */
     @Override
     public Map<String, Object> object2row(Guests object) {
         Map<String, Object> row = new TreeMap<>();

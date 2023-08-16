@@ -17,6 +17,11 @@ public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements
         super("Reservations");
     }
 
+    /**
+     * Method that sets parems. of guest from given attribute
+     * @param rs result set from database
+     * @return reservation object
+     */
     @Override
     public Reservations row2object(ResultSet rs) throws SQLException {
         try {
@@ -32,6 +37,11 @@ public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements
         }
     }
 
+    /**
+     * Method that turns given object to sql query
+     * @param object a bean object for a specific table
+     * @return Map of object
+     */
     @Override
     public Map<String, Object> object2row(Reservations object) {
         Map<String, Object> row = new TreeMap<>();

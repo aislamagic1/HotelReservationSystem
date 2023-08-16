@@ -18,6 +18,11 @@ public class RoomsDaoSQLImpl extends AbstractDao<Rooms> implements RoomsDao{
         super("Rooms");
     }
 
+    /**
+     * Method that sets parems. of room from given attribute
+     * @param rs result set from database
+     * @return room object
+     */
     @Override
     public Rooms row2object(ResultSet rs) throws SQLException {
         try {
@@ -30,6 +35,11 @@ public class RoomsDaoSQLImpl extends AbstractDao<Rooms> implements RoomsDao{
         }
     }
 
+    /**
+     * Method that turns given object to sql query
+     * @param object a bean object for a specific table
+     * @return Map of object
+     */
     @Override
     public Map<String, Object> object2row(Rooms object) {
         Map<String, Object> row = new TreeMap<>();
