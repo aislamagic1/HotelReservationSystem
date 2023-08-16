@@ -7,115 +7,26 @@ import java.io.FileInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
-public class RoomTypesDaoSQLImpl implements RoomTypesDao{
+public class RoomTypesDaoSQLImpl extends AbstractDao<RoomTypes> implements RoomTypesDao{
 
-    private Connection connection;
 
     /**
      * Constructor that makes connection to the database with  hidden values needed to make the connection
      */
-    public RoomTypesDaoSQLImpl(){
-        try{
-            String fieldPath = "src/dataBase.properties";
-            Properties pros = new Properties();
-            FileInputStream ip = new FileInputStream(fieldPath);
-            pros.load(ip);
-            this.connection = DriverManager.getConnection(pros.getProperty("url"), pros.getProperty("username"), pros.getProperty("password"));
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    public RoomTypesDaoSQLImpl() {
+        super("Room_Types");
     }
 
     @Override
-    public RoomTypes getById(int id) {
-        String query = "SELECT * FROM Room_Types WHERE Room_type_id = ?";
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if(rs.next()){
-                RoomTypes roomType = new RoomTypes();
-                roomType.setId(rs.getInt("Room_type_id"));
-                roomType.setRoomType(rs.getString("Room_type"));
-                roomType.setNumPersons(rs.getInt("Num_persons"));
-                roomType.setRoomPrice(rs.getDouble("Room_price"));
-                rs.close();
-                return roomType;
-            }else {
-                return null;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public RoomTypes row2object(ResultSet rs) throws SQLException {
         return null;
     }
 
     @Override
-    public RoomTypes add(RoomTypes item) {
-        String insert = "INSERT INTO Room_Types (Room_type, Num_persons, Room_price) VALUES (?, ?, ?)";
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, item.getRoomType());
-            stmt.setInt(2, item.getNumPersons());
-            stmt.setDouble(3, item.getRoomPrice());
-            stmt.executeUpdate();
-            return item;
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
+    public Map<String, Object> object2row(RoomTypes object) {
         return null;
-    }
-
-    @Override
-    public RoomTypes update(RoomTypes item) {
-        String update = "UPDATE Room_Types SET Room_type = ?, Num_persons = ?, Room_price = ? WHERE Room_type_id = ?";
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, item.getRoomType());
-            stmt.setInt(2, item.getNumPersons());
-            stmt.setDouble(3, item.getRoomPrice());
-            stmt.setInt(4, item.getId());
-            stmt.executeUpdate();
-            return item;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public void delete(int id) {
-        String query = "DELETE FROM Room_Types WHERE Room_type_id = ?";
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public List<RoomTypes> getAll() {
-        String query = "SELECT * FROM Room_Types";
-        List<RoomTypes> roomTypes = new ArrayList<RoomTypes>();
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()){
-                RoomTypes roomType = new RoomTypes();
-                roomType.setId(rs.getInt("Room_type_id"));
-                roomType.setRoomType(rs.getString("Room_type"));
-                roomType.setNumPersons(rs.getInt("Num_persons"));
-                roomType.setRoomPrice(rs.getDouble("Room_price"));
-                roomTypes.add(roomType);
-            }
-            rs.close();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return roomTypes;
     }
 }
