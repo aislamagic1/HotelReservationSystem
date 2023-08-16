@@ -186,7 +186,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
      * @param row - row that gets converted into string
      * @return string used in update statement
      */
-    private String preparePrivateParts(Map<String, Object> row){
+    private String prepareUpdateParts(Map<String, Object> row){
         StringBuilder columns = new StringBuilder();
 
         int counter = 0;
