@@ -80,4 +80,19 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         }
     }
 
+    /**
+     * Method that executes query that witch result is only one object
+     * @param query query to be executed
+     * @param params parameters for query
+     * @return result of the query
+     */
+    public T executeQueryUnique(String query, Object[] params){
+        List<T> result = executeQuery(query, params);
+        if(result != null && result.size() == 1){
+            return result.get(0);
+        }else{
+            return null;
+        }
+    }
+
 }
