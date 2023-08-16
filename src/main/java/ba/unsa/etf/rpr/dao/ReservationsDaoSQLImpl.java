@@ -22,7 +22,17 @@ public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements
 
     @Override
     public Reservations row2object(ResultSet rs) throws SQLException {
-        return null;
+        try {
+            Reservations reservation = new Reservations();
+            reservation.setId(rs.getInt("Reservation_id"));
+            reservation.setArrivalDate(rs.getDate("Arrival_date"));
+            reservation.setCheckOutDate(rs.getDate("Check_out_date"));
+            reservation.setGuest(rs.getInt("Guest_id"));
+            reservation.setRoom_id(rs.getInt("Room_id"));
+            return reservation;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
