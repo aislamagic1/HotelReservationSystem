@@ -5,10 +5,7 @@ import ba.unsa.etf.rpr.domain.Rooms;
 
 import java.io.FileInputStream;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class RoomsDaoSQLImpl extends AbstractDao<Rooms> implements RoomsDao{
 
@@ -35,7 +32,10 @@ public class RoomsDaoSQLImpl extends AbstractDao<Rooms> implements RoomsDao{
 
     @Override
     public Map<String, Object> object2row(Rooms object) {
-        return null;
+        Map<String, Object> row = new TreeMap<>();
+        row.put("Room_id", object.getId());
+        row.put("Room_type_id", object.getRoomTypeID());
+        return row;
     }
 
     @Override
