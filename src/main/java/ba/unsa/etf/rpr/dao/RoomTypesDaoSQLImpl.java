@@ -22,7 +22,16 @@ public class RoomTypesDaoSQLImpl extends AbstractDao<RoomTypes> implements RoomT
 
     @Override
     public RoomTypes row2object(ResultSet rs) throws SQLException {
-        return null;
+        try {
+            RoomTypes roomType = new RoomTypes();
+            roomType.setId(rs.getInt("Room_type_id"));
+            roomType.setRoomType(rs.getString("Room_Type"));
+            roomType.setNumPersons(rs.getInt("Num_persons"));
+            roomType.setRoomPrice(rs.getDouble("Room_price"));
+            return roomType;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
