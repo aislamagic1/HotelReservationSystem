@@ -31,7 +31,13 @@ public class GuestsDaoSQLImpl extends AbstractDao<Guests> implements GuestsDao{
 
     @Override
     public Map<String, Object> object2row(Guests object) {
-        return null;
+        Map<String, Object> row = new TreeMap<>();
+        row.put("Guest_id", object.getId());
+        row.put("First_name", object.getFirstName());
+        row.put("Last_name", object.getLastName());
+        row.put("eMail", object.getEmail());
+        row.put("password", object.getPassword());
+        return row;
     }
 
 
