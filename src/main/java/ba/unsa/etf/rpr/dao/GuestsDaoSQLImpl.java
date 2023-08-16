@@ -15,7 +15,18 @@ public class GuestsDaoSQLImpl extends AbstractDao<Guests> implements GuestsDao{
 
     @Override
     public Guests row2object(ResultSet rs){
-        return null;
+        try {
+            Guests guest = new Guests();
+            guest.setId(rs.getInt("Guest_id"));
+            guest.setFirstName(rs.getString("First_name"));
+            guest.setLastName(rs.getString("Last_name"));
+            guest.setEmail(rs.getString("eMail"));
+            guest.setPassword(rs.getString("password"));
+            return guest;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
