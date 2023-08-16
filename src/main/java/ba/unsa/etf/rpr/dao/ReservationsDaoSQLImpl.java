@@ -6,10 +6,7 @@ import javafx.util.Pair;
 import java.io.FileInputStream;
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements ReservationsDao{
 
@@ -37,7 +34,13 @@ public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements
 
     @Override
     public Map<String, Object> object2row(Reservations object) {
-        return null;
+        Map<String, Object> row = new TreeMap<>();
+        row.put("Reservation_id", object.getId());
+        row.put("Arrival_date", object.getArrivalDate());
+        row.put("Check_out_date", object.getCheckOutDate());
+        row.put("Guest_id", object.getGuest());
+        row.put("Room_id", object.getRoom_id());
+        return row;
     }
 
     @Override
