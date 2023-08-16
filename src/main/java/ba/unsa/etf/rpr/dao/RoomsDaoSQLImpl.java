@@ -23,7 +23,14 @@ public class RoomsDaoSQLImpl extends AbstractDao<Rooms> implements RoomsDao{
 
     @Override
     public Rooms row2object(ResultSet rs) throws SQLException {
-        return null;
+        try {
+            Rooms room = new Rooms();
+            room.setId(rs.getInt("Room_id"));
+            room.setRoomTypeID(rs.getInt("Room_type_id"));
+            return room;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
