@@ -42,6 +42,19 @@ public class RegisterController {
         x.getStyleClass().add("wrongField");
     }
 
+    private void returnToLoginScreen() throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        Parent root = loader.load();
+        stage.setTitle("Hotel Reservation System");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.show();
+        Stage primaryStage = (Stage) returnButton.getScene().getWindow();
+        primaryStage.hide();
+        System.out.println("Returning to login screen");
+    }
+
     @FXML
     void initialize(){
         firstName.textProperty().addListener((observableValue, odlVal, newVal) ->{
@@ -69,16 +82,7 @@ public class RegisterController {
     }
 
     public void returnClick() throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
-        Parent root = loader.load();
-        stage.setTitle("Hotel Reservation System");
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setResizable(false);
-        stage.show();
-        Stage primaryStage = (Stage) returnButton.getScene().getWindow();
-        primaryStage.hide();
-        System.out.println("Returning to login screen");
+        returnToLoginScreen();
     }
 
     public void createNewAccountBtnClick(ActionEvent actionEvent) throws IOException {
@@ -114,7 +118,7 @@ public class RegisterController {
             guest.setPassword(password.getText());
             guestDao.add(guest);
             System.out.println("Your account has been registered!");
-            returnClick();
+            returnToLoginScreen();
         }
     }
 }
