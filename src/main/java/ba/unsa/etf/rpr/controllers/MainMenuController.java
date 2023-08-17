@@ -80,22 +80,28 @@ public class MainMenuController {
         returnToLogoutScreen();
     }
 
-    public void makeReservationBtnClick(ActionEvent actionEvent) throws IOException {
-        int selectedId = tableView.getSelectionModel().getSelectedIndex();
-        if(selectedId != -1) {
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reservation.fxml"));
-            Parent root = loader.load();
+    private void openNewWindow(String title, String file, Boolean transferData, int selectedId) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reservation.fxml"));
+        Parent root = loader.load();
 
+        if(transferData) {
             ReservationController reservationController = loader.getController();
             reservationController.setRoomType(tableView.getItems().get(selectedId));
             reservationController.setRoomPrice(String.valueOf(tableView.getItems().get(selectedId).getRoomPrice()));
             reservationController.setGuestId(guestId);
+        }
 
-            stage.setTitle("Reservation");
-            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setResizable(false);
-            stage.show();
+        stage.setTitle("Reservation");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void makeReservationBtnClick(ActionEvent actionEvent) throws IOException {
+        int selectedId = tableView.getSelectionModel().getSelectedIndex();
+        if(selectedId != -1) {
+            openNewWindow("Reservation", "/fxml/reservation.fxml", true, selectedId);
         }
     }
 }
