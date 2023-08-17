@@ -70,6 +70,24 @@ public class LoginController {
         );
     }
 
+    private void openNewWindow(String title, String file, Boolean transferData, Guests guest) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+        Parent root = loader.load();
+
+        if(transferData) {
+            MainMenuController mainMenuScene = loader.getController();
+            mainMenuScene.displayUserName(guest.getFirstName() + " " + guest.getLastName());
+            mainMenuScene.setGuestId(guest.getId());
+        }
+
+        stage.setTitle(title);
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+        Stage primaryStage = (Stage) loginButton.getScene().getWindow();
+        primaryStage.hide();
+    }
+
     public void loginClick(ActionEvent actionEvent) throws IOException {
         if(fieldUsername.getText().isEmpty()){
             fieldUsername.getStyleClass().add("wrongField");
@@ -88,33 +106,13 @@ public class LoginController {
                 correctUsername();
                 correctPassword();
                 System.out.println("Login successful");
-                Stage stage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-menu.fxml"));
-                Parent root = loader.load();
-
-                MainMenuController mainMenuScene = loader.getController();
-                mainMenuScene.displayUserName(guest.getFirstName() + " " + guest.getLastName());
-                mainMenuScene.setGuestId(guest.getId());
-
-                stage.setTitle("Main Menu");
-                stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-                stage.show();
-                Stage primaryStage = (Stage) loginButton.getScene().getWindow();
-                primaryStage.hide();
+                openNewWindow("Main Menu", "/fxml/main-menu.fxml", true, guest);
             }
         }
     }
 
     public void registerClick(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register.fxml"));
-        Parent root = loader.load();
-        stage.setTitle("Registration");
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setResizable(false);
-        stage.show();
-        Stage primaryStage = (Stage) loginButton.getScene().getWindow();
-        primaryStage.hide();
+        openNewWindow("Registration", "/fxml/register.fxml", false, null);
     }
 }
 
