@@ -133,9 +133,14 @@ public class ReservationController {
         });
     }
 
-    public void cancelButtonClick(ActionEvent actionEvent) throws IOException {
+
+    private void closeWindow(){
         Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
         primaryStage.hide();
+    }
+
+    public void cancelButtonClick(ActionEvent actionEvent) throws IOException {
+        closeWindow();
     }
 
     public void makeReservationButton(ActionEvent actionEvent) {
@@ -158,8 +163,7 @@ public class ReservationController {
             reservation.setGuest(guestId);
 
             reservationsDao.add(reservation);
-            Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
-            primaryStage.hide();
+            closeWindow();
         }
 
     }
