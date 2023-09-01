@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Guests;
 import ba.unsa.etf.rpr.domain.Reservations;
 import javafx.util.Pair;
 
@@ -79,7 +80,7 @@ public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements
     }
 
     @Override
-    public List<Reservations> getAllReservationsForGuest(int guestId) {
-        return null;
+    public List<Reservations> getAllReservationsForGuest(Guests guest) {
+        return executeQuery("SELECT * FROM Reservations WHERE Guest_id = ?", new Object[]{guest.getId()});
     }
 }
