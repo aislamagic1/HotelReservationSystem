@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
+import ba.unsa.etf.rpr.domain.Guests;
 import ba.unsa.etf.rpr.domain.Reservations;
 import javafx.util.Pair;
 
@@ -24,5 +25,5 @@ public interface ReservationsDao extends Dao<Reservations>{
      */
     public List<Pair<LocalDate, LocalDate>> getAllSchedulesForRooms(int roomTypeId);
 
-    public List<Reservations> getAllReservationsForGuest(int guestId);
+    public List<Reservations> getAllReservationsForGuest(Guests guest);
 }
