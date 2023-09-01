@@ -80,7 +80,7 @@ public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements
     }
 
     @Override
-    public List<Reservations> getAllReservationsForGuest(Guests guest) {
-        return executeQuery("SELECT * FROM Reservations WHERE Guest_id = ?", new Object[]{guest.getId()});
+    public List<Reservations> getAllReservationsForGuest(Integer guestId) {
+        return executeQuery("SELECT * FROM Reservations WHERE Guest_id = ?", new Object[]{guestId});
     }
 }

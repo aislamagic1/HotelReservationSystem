@@ -30,5 +30,5 @@ public interface ReservationsDao extends Dao<Reservations>{
      * @param guest guest object
      * @return list of reservations for the guest
      */
-    public List<Reservations> getAllReservationsForGuest(Guests guest);
+    public List<Reservations> getAllReservationsForGuest(Integer guest);
 }
