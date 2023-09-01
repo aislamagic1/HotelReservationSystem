@@ -28,7 +28,7 @@
             <Font size="15.0" />
           </font>
         </Label>
-        <ListView prefHeight="268.0" prefWidth="154.0">
+        <ListView fx:id="listView" prefHeight="268.0" prefWidth="154.0">
           <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
           </padding>

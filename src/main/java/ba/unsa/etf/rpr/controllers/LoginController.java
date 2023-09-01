@@ -79,6 +79,7 @@ public class LoginController {
             MainMenuController mainMenuScene = loader.getController();
             mainMenuScene.displayUserName(guest.getFirstName() + " " + guest.getLastName());
             mainMenuScene.setGuestId(guest.getId());
+            mainMenuScene.setListView(guest.getId());
         }
 
         stage.setTitle(title);

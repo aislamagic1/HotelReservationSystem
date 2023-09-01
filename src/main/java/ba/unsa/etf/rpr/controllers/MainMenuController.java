@@ -1,7 +1,10 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.dao.ReservationsDao;
+import ba.unsa.etf.rpr.dao.ReservationsDaoSQLImpl;
 import ba.unsa.etf.rpr.dao.RoomTypesDao;
 import ba.unsa.etf.rpr.dao.RoomTypesDaoSQLImpl;
+import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.domain.RoomTypes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,10 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -25,6 +25,7 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 public class MainMenuController {
     public Button logoutButton;
     public Label userName;
+    public ListView<String> listView;
 
     private int guestId;
 
@@ -50,6 +51,13 @@ public class MainMenuController {
         tableView.setItems(roomTypesList);
     }
 
+    public void setListView(int guestId){
+        ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
+        List<Reservations> reservations =  reservationsDao.getAllReservationsForGuest(guestId);
+        for(Reservations reservation : reservations) {
+            listView.getItems().add(String.valueOf(reservation.getId()));
+        }
+    }
 
     public void setGuestId(int id){
         this.guestId = id;
