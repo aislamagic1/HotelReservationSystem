@@ -25,5 +25,10 @@ public interface ReservationsDao extends Dao<Reservations>{
      */
     public List<Pair<LocalDate, LocalDate>> getAllSchedulesForRooms(int roomTypeId);
 
+    /**
+     * Method that finds all reservations for one guest from the db
+     * @param guest guest object
+     * @return list of reservations for the guest
+     */
     public List<Reservations> getAllReservationsForGuest(Guests guest);
 }
