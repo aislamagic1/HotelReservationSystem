@@ -77,4 +77,9 @@ public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements
         }
         return result;
     }
+
+    @Override
+    public List<Reservations> getAllReservationsForGuest(int guestId) {
+        return null;
+    }
 }

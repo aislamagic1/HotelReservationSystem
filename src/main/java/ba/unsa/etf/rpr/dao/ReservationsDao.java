@@ -23,4 +23,6 @@ public interface ReservationsDao extends Dao<Reservations>{
      * @return list of arrival and check out dates represented with pairs
      */
     public List<Pair<LocalDate, LocalDate>> getAllSchedulesForRooms(int roomTypeId);
+
+    public List<Reservations> getAllReservationsForGuest(int guestId);
 }
