@@ -81,17 +81,9 @@ public class MainMenuController {
         System.out.println("Returning to login screen.");
     }
 
-    public void logoutButtonClick(ActionEvent actionEvent) throws IOException {
-        returnToLogoutScreen();
-    }
-
-    public void logoutMenuClick(ActionEvent actionEvent) throws IOException {
-        returnToLogoutScreen();
-    }
-
     private void openNewWindow(String title, String file, Boolean openMakeReservation, int selectedId) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reservation.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
         Parent root = loader.load();
 
         if(openMakeReservation) {
@@ -101,10 +93,18 @@ public class MainMenuController {
             reservationController.setGuestId(guestId);
         }
 
-        stage.setTitle("Reservation");
+        stage.setTitle(title);
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();
+    }
+
+    public void logoutButtonClick(ActionEvent actionEvent) throws IOException {
+        returnToLogoutScreen();
+    }
+
+    public void logoutMenuClick(ActionEvent actionEvent) throws IOException {
+        returnToLogoutScreen();
     }
 
     public void makeReservationBtnClick(ActionEvent actionEvent) throws IOException {
