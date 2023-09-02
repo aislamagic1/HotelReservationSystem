@@ -21,10 +21,10 @@ public class ReservationInfoController {
 
     public void setReservationAndLabels(Reservations val){
         reservation = val;
-        roomNumber.setText(String.valueOf(val.getRoom_id()));
+        roomNumber.setText(String.valueOf(reservation.getRoom_id()));
         roomType.setText(String.valueOf(""));
-        arrivalDate.setText(String.valueOf(val.getArrivalDate()));
-        checkOutDate.setText(String.valueOf(val.getCheckOutDate()));
+        arrivalDate.setText(String.valueOf(reservation.getArrivalDate()));
+        checkOutDate.setText(String.valueOf(reservation.getCheckOutDate()));
     }
 
     private void closeWindow(){
