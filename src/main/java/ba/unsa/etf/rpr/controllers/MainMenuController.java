@@ -91,6 +91,11 @@ public class MainMenuController {
             reservationController.setRoomType(tableView.getItems().get(selectedId));
             reservationController.setRoomPrice(String.valueOf(tableView.getItems().get(selectedId).getRoomPrice()));
             reservationController.setGuestId(guestId);
+        }else{
+            ReservationInfoController reservationInfoController = loader.getController();
+            reservationInfoController.displayRoomNumber(String.valueOf(reservations.get(selectedId).getRoom_id()));
+            reservationInfoController.displayArrivalDate(String.valueOf(reservations.get(selectedId).getArrivalDate()));
+            reservationInfoController.displayCheckOutDate(String.valueOf(reservations.get(selectedId).getCheckOutDate()));
         }
 
         stage.setTitle(title);
