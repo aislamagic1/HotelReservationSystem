@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.domain.Reservations;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,11 +29,11 @@ public class ReservationInfoController {
     }
 
     private void closeWindow(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-menu.fxml"));
-        MainMenuController mainMenuController = loader.getController();
-        mainMenuController.setListView(reservation.getId());
         Stage primaryStage = (Stage) closeButton.getScene().getWindow();
         primaryStage.hide();
     }
 
+    public void closeBtnClick(ActionEvent actionEvent) {
+        closeWindow();
+    }
 }
