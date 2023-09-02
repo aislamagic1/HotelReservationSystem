@@ -89,12 +89,12 @@ public class MainMenuController {
         returnToLogoutScreen();
     }
 
-    private void openNewWindow(String title, String file, Boolean transferData, int selectedId) throws IOException {
+    private void openNewWindow(String title, String file, Boolean openMakeReservation, int selectedId) throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reservation.fxml"));
         Parent root = loader.load();
 
-        if(transferData) {
+        if(openMakeReservation) {
             ReservationController reservationController = loader.getController();
             reservationController.setRoomType(tableView.getItems().get(selectedId));
             reservationController.setRoomPrice(String.valueOf(tableView.getItems().get(selectedId).getRoomPrice()));
@@ -115,6 +115,9 @@ public class MainMenuController {
     }
 
     public void viewDetailsBtnClick(ActionEvent actionEvent) throws IOException {
-        openNewWindow("Reservation Info", "/fxml/reservationInfo.fxml", false, 0);
+        int selectedId = listView.getSelectionModel().getSelectedIndex();
+        if(selectedId != -1) {
+            openNewWindow("Reservation Info", "/fxml/reservationInfo.fxml", false, selectedId);
+        }
     }
 }
