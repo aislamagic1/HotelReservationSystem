@@ -28,6 +28,8 @@ public class MainMenuController {
     public ListView<String> listView;
     private int guestId;
 
+    private List<Reservations> reservations;
+
     @FXML
     private TableView<RoomTypes> tableView;
     @FXML
@@ -48,11 +50,18 @@ public class MainMenuController {
         ObservableList<RoomTypes> roomTypesList = FXCollections.observableArrayList(list);
 
         tableView.setItems(roomTypesList);
+
+        listView.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            if (newValue != null) {
+                int selectedIndex = listView.getSelectionModel().getSelectedIndex();
+                Reservations selectedReservation = reservations.get(selectedIndex);
+            }
+        }));
     }
 
     public void setListView(int guestId){
         ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
-        List<Reservations> reservations =  reservationsDao.getAllReservationsForGuest(guestId);
+        reservations =  reservationsDao.getAllReservationsForGuest(guestId);
         for(Reservations reservation : reservations) {
             listView.getItems().add(String.valueOf(reservation.getId()));
         }
