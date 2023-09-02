@@ -50,13 +50,6 @@ public class MainMenuController {
         ObservableList<RoomTypes> roomTypesList = FXCollections.observableArrayList(list);
 
         tableView.setItems(roomTypesList);
-
-        listView.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
-            if (newValue != null) {
-                int selectedIndex = listView.getSelectionModel().getSelectedIndex();
-                Reservations selectedReservation = reservations.get(selectedIndex);
-            }
-        }));
     }
 
     public void setListView(int guestId){
