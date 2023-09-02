@@ -26,7 +26,6 @@ public class MainMenuController {
     public Button logoutButton;
     public Label userName;
     public ListView<String> listView;
-
     private int guestId;
 
     @FXML
