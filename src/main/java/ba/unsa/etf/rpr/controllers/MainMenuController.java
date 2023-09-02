@@ -93,9 +93,7 @@ public class MainMenuController {
             reservationController.setGuestId(guestId);
         }else{
             ReservationInfoController reservationInfoController = loader.getController();
-            reservationInfoController.displayRoomNumber(String.valueOf(reservations.get(selectedId).getRoom_id()));
-            reservationInfoController.displayArrivalDate(String.valueOf(reservations.get(selectedId).getArrivalDate()));
-            reservationInfoController.displayCheckOutDate(String.valueOf(reservations.get(selectedId).getCheckOutDate()));
+            reservationInfoController.setReservationAndLabels(reservations.get(selectedId));
         }
 
         stage.setTitle(title);

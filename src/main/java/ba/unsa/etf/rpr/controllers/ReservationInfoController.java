@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.domain.Reservations;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,20 +17,14 @@ public class ReservationInfoController {
     public Label checkOutDate;
     public Button closeButton;
 
-    public void displayRoomNumber(String val){
-        roomNumber.setText(val);
-    }
+    private Reservations reservation;
 
-    public void displayRoomType(String val){
-        roomType.setText(val);
-    }
-
-    public void displayArrivalDate(String val){
-        arrivalDate.setText(val);
-    }
-
-    public void displayCheckOutDate(String val){
-        checkOutDate.setText(val);
+    public void setReservationAndLabels(Reservations val){
+        reservation = val;
+        roomNumber.setText(String.valueOf(val.getRoom_id()));
+        roomType.setText(String.valueOf(""));
+        arrivalDate.setText(String.valueOf(val.getArrivalDate()));
+        checkOutDate.setText(String.valueOf(val.getCheckOutDate()));
     }
 
     private void closeWindow(){
