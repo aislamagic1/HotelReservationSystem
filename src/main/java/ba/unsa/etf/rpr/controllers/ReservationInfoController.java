@@ -28,6 +28,9 @@ public class ReservationInfoController {
     }
 
     private void closeWindow(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-menu.fxml"));
+        MainMenuController mainMenuController = loader.getController();
+        mainMenuController.setListView(reservation.getId());
         Stage primaryStage = (Stage) closeButton.getScene().getWindow();
         primaryStage.hide();
     }
