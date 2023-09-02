@@ -113,4 +113,8 @@ public class MainMenuController {
             openNewWindow("Reservation", "/fxml/reservation.fxml", true, selectedId);
         }
     }
+
+    public void viewDetailsBtnClick(ActionEvent actionEvent) throws IOException {
+        openNewWindow("Reservation Info", "/fxml/reservationInfo.fxml", false, 0);
+    }
 }
