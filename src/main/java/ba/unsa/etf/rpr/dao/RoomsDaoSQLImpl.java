@@ -27,7 +27,7 @@ public class RoomsDaoSQLImpl extends AbstractDao<Rooms> implements RoomsDao{
     public Rooms row2object(ResultSet rs) throws SQLException {
         try {
             Rooms room = new Rooms();
-            room.setId(rs.getInt("Room_id"));
+            room.setId(rs.getInt("id"));
             room.setRoomTypeID(rs.getInt("Room_type_id"));
             return room;
         } catch (SQLException e) {
@@ -43,7 +43,7 @@ public class RoomsDaoSQLImpl extends AbstractDao<Rooms> implements RoomsDao{
     @Override
     public Map<String, Object> object2row(Rooms object) {
         Map<String, Object> row = new TreeMap<>();
-        row.put("Room_id", object.getId());
+        row.put("id", object.getId());
         row.put("Room_type_id", object.getRoomTypeID());
         return row;
     }
@@ -58,7 +58,7 @@ public class RoomsDaoSQLImpl extends AbstractDao<Rooms> implements RoomsDao{
             List<Rooms> listOfRooms = new ArrayList<>();
             while(rs.next()){
                 Rooms room = new Rooms();
-                room.setId(rs.getInt("Room_id"));
+                room.setId(rs.getInt("id"));
                 room.setRoomTypeID(rs.getInt("Room_type_id"));
                 listOfRooms.add(room);
             }

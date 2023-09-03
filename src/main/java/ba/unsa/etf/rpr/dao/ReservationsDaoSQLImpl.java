@@ -27,7 +27,7 @@ public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements
     public Reservations row2object(ResultSet rs) throws SQLException {
         try {
             Reservations reservation = new Reservations();
-            reservation.setId(rs.getInt("Reservation_id"));
+            reservation.setId(rs.getInt("id"));
             reservation.setArrivalDate(rs.getDate("Arrival_date"));
             reservation.setCheckOutDate(rs.getDate("Check_out_date"));
             reservation.setGuest(rs.getInt("Guest_id"));
@@ -46,7 +46,7 @@ public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements
     @Override
     public Map<String, Object> object2row(Reservations object) {
         Map<String, Object> row = new TreeMap<>();
-        row.put("Reservation_id", object.getId());
+        row.put("id", object.getId());
         row.put("Arrival_date", object.getArrivalDate());
         row.put("Check_out_date", object.getCheckOutDate());
         row.put("Guest_id", object.getGuest());

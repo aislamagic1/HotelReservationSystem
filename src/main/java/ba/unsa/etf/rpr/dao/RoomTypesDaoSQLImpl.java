@@ -26,7 +26,7 @@ public class RoomTypesDaoSQLImpl extends AbstractDao<RoomTypes> implements RoomT
     public RoomTypes row2object(ResultSet rs) throws SQLException {
         try {
             RoomTypes roomType = new RoomTypes();
-            roomType.setId(rs.getInt("Room_type_id"));
+            roomType.setId(rs.getInt("id"));
             roomType.setRoomType(rs.getString("Room_Type"));
             roomType.setNumPersons(rs.getInt("Num_persons"));
             roomType.setRoomPrice(rs.getDouble("Room_price"));
@@ -44,7 +44,7 @@ public class RoomTypesDaoSQLImpl extends AbstractDao<RoomTypes> implements RoomT
     @Override
     public Map<String, Object> object2row(RoomTypes object) {
         Map<String, Object> row = new TreeMap<>();
-        row.put("Room_type_id", object.getId());
+        row.put("id", object.getId());
         row.put("Room_type", object.getRoomType());
         row.put("Num_persons", object.getNumPersons());
         row.put("Room_price", object.getRoomPrice());

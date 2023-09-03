@@ -22,7 +22,7 @@ public class GuestsDaoSQLImpl extends AbstractDao<Guests> implements GuestsDao{
     public Guests row2object(ResultSet rs){
         try {
             Guests guest = new Guests();
-            guest.setId(rs.getInt("Guest_id"));
+            guest.setId(rs.getInt("id"));
             guest.setFirstName(rs.getString("First_name"));
             guest.setLastName(rs.getString("Last_name"));
             guest.setEmail(rs.getString("eMail"));
@@ -42,7 +42,7 @@ public class GuestsDaoSQLImpl extends AbstractDao<Guests> implements GuestsDao{
     @Override
     public Map<String, Object> object2row(Guests object) {
         Map<String, Object> row = new TreeMap<>();
-        row.put("Guest_id", object.getId());
+        row.put("id", object.getId());
         row.put("First_name", object.getFirstName());
         row.put("Last_name", object.getLastName());
         row.put("eMail", object.getEmail());
@@ -67,7 +67,7 @@ public class GuestsDaoSQLImpl extends AbstractDao<Guests> implements GuestsDao{
             ResultSet rs = stmt.executeQuery();
             Guests guest = new Guests();
             while(rs.next()){
-                guest.setId(rs.getInt("Guest_id"));
+                guest.setId(rs.getInt("id"));
                 guest.setFirstName(rs.getString("First_name"));
                 guest.setLastName(rs.getString("Last_name"));
                 guest.setEmail(rs.getString("eMail"));
