@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.dao.ReservationsDao;
+import ba.unsa.etf.rpr.dao.ReservationsDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Reservations;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -34,6 +38,12 @@ public class ReservationInfoController {
     }
 
     public void closeBtnClick(ActionEvent actionEvent) {
+        closeWindow();
+    }
+
+    public void cancelReservationBtnClick(ActionEvent actionEvent) {
+        ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
+        reservationsDao.delete(reservation.getId());
         closeWindow();
     }
 }
