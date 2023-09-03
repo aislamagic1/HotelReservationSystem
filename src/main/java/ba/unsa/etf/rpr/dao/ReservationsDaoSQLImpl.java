@@ -59,7 +59,7 @@ public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements
         String query = "SELECT r.Arrival_date, r.Check_out_date " +
                 "FROM freedb_Hotel_Reservation_System.Reservations r " +
                 "WHERE r.Room_id IN ( " +
-                "SELECT r2.Room_id " +
+                "SELECT r2.id " +
                 "FROM freedb_Hotel_Reservation_System.Rooms r2 " +
                 "WHERE r2.Room_type_id = ?" +
                 ")";

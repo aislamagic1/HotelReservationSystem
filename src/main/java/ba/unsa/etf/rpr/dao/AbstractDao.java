@@ -189,11 +189,16 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         StringBuilder questions = new StringBuilder();
 
         int counter = 0;
+        boolean foundId = false;
         for(Map.Entry<String, Object> entry : row.entrySet()){
             counter++;
-            if(entry.getKey().equals("id")) continue;
+            if(entry.getKey().equals("id")) {
+                foundId = true;
+                continue;
+            }
             columns.append(entry.getKey());
             questions.append("?");
+            if(row.size() - 1 == counter && !foundId) break; // for case if "id" is in last place of row object
             if(row.size() != counter){
                 columns.append(",");
                 questions.append(",");
