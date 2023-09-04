@@ -49,7 +49,7 @@ public class ReservationsManager {
         try{
             DaoFactory.reservationsDao().add(item);
         }catch(Exception e){
-            throw new RuntimeException("Greska prilikom brisanja");
+            throw new ReservationsException("Greska prilikom brisanja");
         }
     }
 
@@ -58,7 +58,7 @@ public class ReservationsManager {
      * Get item by id
      * @param id of item
      * @return item from db
-     * @throws GuestException
+     * @throws ReservationsException
      */
     public Reservations getById(int id) throws ReservationsException {
         try{
