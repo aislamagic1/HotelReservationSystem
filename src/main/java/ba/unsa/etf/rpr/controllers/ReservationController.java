@@ -44,6 +44,8 @@ public class ReservationController {
     private int guestId;
     private double price;
 
+    private List<LocalDate> repeatedDates;
+
     //manager
     private final ReservationsManager reservationsManager = new ReservationsManager();
     private final RoomsManager roomsManager = new RoomsManager();
@@ -51,6 +53,8 @@ public class ReservationController {
     public void setRoomType(RoomTypes roomType){
         this.roomType = roomType;
         dates = reservationsManager.getAllSchedulesForRooms(roomType.getId());
+        List<Rooms> roomsWithSameType = roomsManager.getRoomsWithSameRoomType(roomType.getId());
+        repeatedDates = findRepeatedDates(dates, roomsWithSameType.size());
     }
     public void setRoomPrice(double price){
         this.price = price;
@@ -89,10 +93,8 @@ public class ReservationController {
                             setDisable(true);
                             setStyle("-fx-background-color: #ffc0cb;");
                         }else{
-                            for(Pair<LocalDate, LocalDate> date : dates){
-                                LocalDate arrival = date.getKey();
-                                LocalDate checkOut = date.getValue();
-                                if(item.equals(arrival) || item.equals(checkOut) || (item.isAfter(arrival) && item.isBefore(checkOut))){
+                            for(LocalDate date : repeatedDates){
+                                if(item.equals(date)){
                                     setDisable(true);
                                     setStyle("-fx-background-color: #ffc0cb;");
                                 }
