@@ -49,7 +49,7 @@ public class RoomTypesManager {
         try{
             DaoFactory.roomTypesDao().add(item);
         }catch(Exception e){
-            throw new RoomTypesException("Greska prilikom brisanja");
+            throw new RoomTypesException("Greska prilikom dodavanja!");
         }
     }
 

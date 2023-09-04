@@ -33,4 +33,6 @@ public class RoomsManagerTest {
         room.setRoomTypeID(90);
         assertThrows(RoomsException.class, () ->{new RoomsManager().add(room);});
     }
+
+
 }
