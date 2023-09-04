@@ -1,1 +1,2 @@
 # Hotel Reservation System
+Ova aplikacija sluzi za rezervaciju soba u hotelu. Gost hotela se prvo registruje, pa zatim prijavljuje sa svojim korisnickim nalogom.Gost je u mogucnosti izabrati jednu od vise tipova soba, nakon cega je u mogucnosti da rezervise sobu. Nakon odabira datuma i rezervacije same sobe, gost je i u mogucnosti da pregleda sve detalje o svojoj rezervaciji i eventualno otkaze rezervaciju.
