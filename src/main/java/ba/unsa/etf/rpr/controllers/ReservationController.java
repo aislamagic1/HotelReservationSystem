@@ -28,8 +28,7 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -51,7 +50,7 @@ public class ReservationController {
 
     public void setRoomType(RoomTypes roomType){
         this.roomType = roomType;
-        dates =reservationsManager.getAllSchedulesForRooms(roomType.getId());
+        dates = reservationsManager.getAllSchedulesForRooms(roomType.getId());
     }
     public void setRoomPrice(double price){
         this.price = price;
@@ -144,6 +143,35 @@ public class ReservationController {
         });
     }
 
+    /**
+     * Method that finds all the dates that are repeated x amount of times
+     * @param datePairs list of dates
+     * @param repetitionCount x repeated times
+     * @return list of dates
+     */
+    private List<LocalDate> findRepeatedDates(List<Pair<LocalDate, LocalDate>> datePairs, int repetitionCount){
+        Map<LocalDate, Integer> dateCountMap = new HashMap<>();
+
+        for (Pair<LocalDate, LocalDate> datePair : datePairs) {
+            LocalDate startDate = datePair.getKey();
+            LocalDate endDate = datePair.getValue();
+
+            LocalDate currentDate = startDate;
+            while (!currentDate.isAfter(endDate)) {
+                dateCountMap.put(currentDate, dateCountMap.getOrDefault(currentDate, 0) + 1);
+                currentDate = currentDate.plusDays(1);
+            }
+        }
+
+        List<LocalDate> repeatedDates = new ArrayList<>();
+        for (Map.Entry<LocalDate, Integer> entry : dateCountMap.entrySet()) {
+            if (entry.getValue() == repetitionCount) {
+                repeatedDates.add(entry.getKey());
+            }
+        }
+
+        return repeatedDates;
+    }
 
     private void closeWindow(){
         Stage primaryStage = (Stage) cancelButton.getScene().getWindow();
