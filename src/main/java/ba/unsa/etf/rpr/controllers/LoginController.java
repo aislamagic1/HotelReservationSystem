@@ -88,6 +88,7 @@ public class LoginController {
 
         stage.setTitle(title);
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
         stage.show();
         Stage primaryStage = (Stage) loginButton.getScene().getWindow();
         primaryStage.hide();
