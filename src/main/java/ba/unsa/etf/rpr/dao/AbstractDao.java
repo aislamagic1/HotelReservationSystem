@@ -15,21 +15,40 @@ import java.util.*;
  */
 
 public abstract class AbstractDao<T extends Idable> implements Dao<T> {
-    private Connection connection;
+    private static Connection connection = null;
     private String tableName;
 
     /**
      * Constructor that makes connection to the database with  hidden values needed to make the connection
      */
     public AbstractDao(String tableName){
-        try{
-            this.tableName = tableName;
-            FileReader fileReader = new FileReader("src/dataBase.properties");
-            Properties property = new Properties();
-            property.load(fileReader);
-            this.connection = DriverManager.getConnection(property.getProperty("url"), property.getProperty("username"), property.getProperty("password"));
-        }catch(Exception e){
-            e.printStackTrace();
+        this.tableName = tableName;
+        createConnection();
+    }
+
+    private static void createConnection(){
+        if(AbstractDao.connection == null){
+            FileReader fileReader = null;
+            try{
+                fileReader = new FileReader("src/dataBase.properties");
+                Properties property = new Properties();
+                property.load(fileReader);
+                AbstractDao.connection = DriverManager.getConnection(property.getProperty("url"), property.getProperty("username"), property.getProperty("password"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            finally {
+                Runtime.getRuntime().addShutdownHook(new Thread(){
+                    @Override
+                    public void run(){
+                        try {
+                            connection.close();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
         }
     }
 
@@ -37,7 +56,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
      * Method that gets connection from db
      * @return connection of the db
      */
-    public Connection getConnection() {return this.connection; }
+    public static Connection getConnection() {return AbstractDao.connection; }
 
     /**
      * Method for mapping ResultSet into Object
