@@ -62,7 +62,7 @@ public class MainMenuController {
     public void setListView(int guestId){
         reservations =  reservationsManager.getAllReservationsForGuest(guestId);
         for(Reservations reservation : reservations) {
-            listView.getItems().add(String.valueOf(reservation.getId()));
+            listView.getItems().add(String.valueOf(reservation.getArrivalDate()));
         }
     }
 
