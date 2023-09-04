@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.GuestManager;
 import ba.unsa.etf.rpr.dao.GuestsDao;
 import ba.unsa.etf.rpr.dao.GuestsDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Guests;
@@ -24,6 +25,9 @@ public class LoginController {
     public TextField fieldUsername;
     public PasswordField fieldPassword;
     public Button loginButton;
+
+    //manager
+    private final GuestManager guestManager = new GuestManager();
 
     private void wrongUsername(){
         fieldUsername.getStyleClass().removeAll("correctField");
@@ -97,8 +101,7 @@ public class LoginController {
             fieldPassword.getStyleClass().add("wrongField");
             System.out.println("Empty password");
         }else{
-            GuestsDao guestsDao = GuestsDaoSQLImpl.getInstance();
-            Guests guest = guestsDao.getGuestByEmailAndPassword(fieldUsername.getText(), fieldPassword.getText());
+            Guests guest = guestManager.getGuestByEmailAndPassword(fieldUsername.getText(), fieldPassword.getText());
             if(guest.getEmail() == null || guest.getPassword() == null){
                 System.out.println("Incorrect email or password. Please try again.");
                 wrongPassword();

@@ -1,8 +1,10 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.GuestManager;
 import ba.unsa.etf.rpr.dao.GuestsDao;
 import ba.unsa.etf.rpr.dao.GuestsDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Guests;
+import ba.unsa.etf.rpr.exception.GuestException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +29,9 @@ public class RegisterController {
     public TextField password;
     public Label eMailError;
     public Label passwordError;
+
+    //manager
+        private final GuestManager guestManager = new GuestManager();
 
     private void checkEmptyTextField(TextField x){
         if(x.getText().trim().isEmpty()){
@@ -85,7 +90,7 @@ public class RegisterController {
         returnToLoginScreen();
     }
 
-    public void createNewAccountBtnClick(ActionEvent actionEvent) throws IOException {
+    public void createNewAccountBtnClick(ActionEvent actionEvent) throws IOException, GuestException {
         if(firstName.getText().isEmpty()){
             setWrongField(firstName);
             System.out.println("Enter first name!");
@@ -100,8 +105,7 @@ public class RegisterController {
             System.out.println("Password must contain at least 5 characters!");
         }else{
             Guests guest = new Guests();
-            GuestsDao guestDao = GuestsDaoSQLImpl.getInstance();
-            List<Guests> listOfGuests = guestDao.getAll();
+            List<Guests> listOfGuests = guestManager.getAll();
             eMailError.setText("");
             for(Guests x : listOfGuests){
                 if(x.getEmail().equals(eMail.getText())){
@@ -116,7 +120,7 @@ public class RegisterController {
             guest.setLastName(lastName.getText());
             guest.setEmail(eMail.getText());
             guest.setPassword(password.getText());
-            guestDao.add(guest);
+            guestManager.add(guest);
             System.out.println("Your account has been registered!");
             returnToLoginScreen();
         }
