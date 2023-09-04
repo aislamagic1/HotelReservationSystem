@@ -94,4 +94,8 @@ public class GuestManager {
         }
     }
 
+    public Guests getGuestByEmailAndPassword(String email, String password){
+        return DaoFactory.guestsDao().getGuestByEmailAndPassword(email, password);
+    }
+
 }
