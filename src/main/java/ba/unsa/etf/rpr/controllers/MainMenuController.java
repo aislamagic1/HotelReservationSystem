@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -51,16 +52,6 @@ public class MainMenuController {
         ObservableList<RoomTypes> roomTypesList = FXCollections.observableArrayList(list);
 
         tableView.setItems(roomTypesList);
-
-        listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (listView.getItems().size() != reservations.size()) {
-                ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
-                reservations =  reservationsDao.getAllReservationsForGuest(guestId);
-                for(Reservations reservation : reservations) {
-                    listView.getItems().add(String.valueOf(reservation.getId()));
-                }
-            }
-        });
     }
 
     public void setListView(int guestId){
@@ -69,6 +60,13 @@ public class MainMenuController {
         for(Reservations reservation : reservations) {
             listView.getItems().add(String.valueOf(reservation.getId()));
         }
+    }
+
+    public void updateListView(){
+        ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
+        reservations =  reservationsDao.getAllReservationsForGuest(guestId);
+        List<String> s = new ArrayList<>();
+        listView.setItems((ObservableList<String>) s);
     }
 
     public void setGuestId(int id){
