@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.ReservationsManager;
+import ba.unsa.etf.rpr.business.RoomsManager;
 import ba.unsa.etf.rpr.dao.ReservationsDao;
 import ba.unsa.etf.rpr.dao.ReservationsDaoSQLImpl;
 import ba.unsa.etf.rpr.dao.RoomsDao;
@@ -45,6 +46,7 @@ public class ReservationController {
 
     //manager
     private final ReservationsManager reservationsManager = new ReservationsManager();
+    private final RoomsManager roomsManager = new RoomsManager();
 
     public void setRoomType(RoomTypes roomType){
         this.roomType = roomType;
@@ -159,8 +161,7 @@ public class ReservationController {
             reservation.setArrivalDate(java.sql.Date.valueOf(arrivalDatePicker.getValue()));
             reservation.setCheckOutDate(java.sql.Date.valueOf(checkOutDatePicker.getValue()));
 
-            RoomsDao roomsDao = RoomsDaoSQLImpl.getInstance();
-            List<Rooms> rooms = roomsDao.getRoomsWithSameRoomType(roomType.getId());
+            List<Rooms> rooms = roomsManager.getRoomsWithSameRoomType(roomType.getId());
 
             reservation.setRoom_id(rooms.get(0).getId());
             reservation.setGuest(guestId);
