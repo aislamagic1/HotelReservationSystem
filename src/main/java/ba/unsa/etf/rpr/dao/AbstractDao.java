@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.domain.Idable;
 import ba.unsa.etf.rpr.domain.Reservations;
 
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.sql.*;
 import java.util.*;
 
@@ -23,11 +24,10 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
     public AbstractDao(String tableName){
         try{
             this.tableName = tableName;
-            String fieldPath = "src/dataBase.properties";
-            Properties pros = new Properties();
-            FileInputStream ip = new FileInputStream(fieldPath);
-            pros.load(ip);
-            this.connection = DriverManager.getConnection(pros.getProperty("url"), pros.getProperty("username"), pros.getProperty("password"));
+            FileReader fileReader = new FileReader("src/dataBase.properties");
+            Properties property = new Properties();
+            property.load(fileReader);
+            this.connection = DriverManager.getConnection(property.getProperty("url"), property.getProperty("username"), property.getProperty("password"));
         }catch(Exception e){
             e.printStackTrace();
         }
