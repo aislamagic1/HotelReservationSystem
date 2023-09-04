@@ -13,6 +13,18 @@ import java.util.List;
 
 public class GuestManager {
 
+
+    /**
+     * Validating guest first and last name are not numbers
+     * @param guest
+     * @throws GuestException
+     */
+    public void validateGuest(Guests guest) throws GuestException {
+        if(!guest.getFirstName().matches("[a-zA-Z]+") || !guest.getLastName().matches("[a-zA-Z]+")){
+            throw new GuestException("Greska pri validaciji podataka!");
+        }
+    }
+
     /**
      * Get all guests from db
      * @return list of guests
@@ -43,6 +55,7 @@ public class GuestManager {
     public void add(Guests item) throws GuestException {
         if(item.getId() != 0) throw new GuestException("Id must be autoincrement");
         try{
+            validateGuest(item);
             DaoFactory.guestsDao().add(item);
         }catch(Exception e){
             throw new GuestException("Greska prilikom brisanja");
@@ -73,6 +86,7 @@ public class GuestManager {
      */
     public Guests update(Guests item) throws GuestException {
         try{
+            validateGuest(item);
             return DaoFactory.guestsDao().update(item);
         }
         catch(Exception e){
