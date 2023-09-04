@@ -19,7 +19,6 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class ReservationInfoController {
     public Label roomNumber;
-    public Label roomType;
     public Label arrivalDate;
     public Label checkOutDate;
     public Button closeButton;
@@ -32,7 +31,6 @@ public class ReservationInfoController {
     public void setReservationAndLabels(Reservations val){
         reservation = val;
         roomNumber.setText(String.valueOf(reservation.getRoom_id()));
-        roomType.setText(String.valueOf(""));
         arrivalDate.setText(String.valueOf(reservation.getArrivalDate()));
         checkOutDate.setText(String.valueOf(reservation.getCheckOutDate()));
     }

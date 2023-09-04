@@ -31,6 +31,7 @@ public class MainMenuController {
     public Button logoutButton;
     public Label userName;
     public ListView<String> listView;
+    public Button viewDetails;
     private int guestId;
 
     private List<Reservations> reservations;
@@ -68,9 +69,19 @@ public class MainMenuController {
     }
 
     public void updateListView(){
-        reservations =  reservationsManager.getAllReservationsForGuest(guestId);
-        List<String> s = new ArrayList<>();
-        listView.setItems((ObservableList<String>) s);
+        List<Reservations> newReservations =  reservationsManager.getAllReservationsForGuest(guestId);
+        if(newReservations.size() > reservations.size()){
+            int i = 0;
+            for(Reservations x : newReservations){
+                if(i > reservations.size() - 1)
+                    listView.getItems().add(String.valueOf(x.getArrivalDate()));
+                i = i + 1;
+            }
+        }else if(newReservations.size() < reservations.size()){
+            int lastIndex = listView.getItems().size() - 1;
+            listView.getItems().remove(lastIndex);
+        }
+        reservations = newReservations;
     }
 
     public void setGuestId(int id){
@@ -124,6 +135,7 @@ public class MainMenuController {
     }
 
     public void makeReservationBtnClick(ActionEvent actionEvent) throws IOException, ReservationsException {
+        updateListView();
         int selectedId = tableView.getSelectionModel().getSelectedIndex();
         if(selectedId != -1) {
             openNewWindow("Reservation", "/fxml/reservation.fxml", true, selectedId);
@@ -131,8 +143,9 @@ public class MainMenuController {
     }
 
     public void viewDetailsBtnClick(ActionEvent actionEvent) throws IOException, ReservationsException {
+        updateListView();
         int selectedId = listView.getSelectionModel().getSelectedIndex();
-        if(selectedId != -1) {
+        if(selectedId != -1 && selectedId <= listView.getItems().size()) {
             openNewWindow("Reservation Info", "/fxml/reservationInfo.fxml", false, selectedId);
         }
     }
