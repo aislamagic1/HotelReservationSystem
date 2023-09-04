@@ -97,7 +97,7 @@ public class LoginController {
             fieldPassword.getStyleClass().add("wrongField");
             System.out.println("Empty password");
         }else{
-            GuestsDao guestsDao = new GuestsDaoSQLImpl();
+            GuestsDao guestsDao = GuestsDaoSQLImpl.getInstance();
             Guests guest = guestsDao.getGuestByEmailAndPassword(fieldUsername.getText(), fieldPassword.getText());
             if(guest.getEmail() == null || guest.getPassword() == null){
                 System.out.println("Incorrect email or password. Please try again.");

@@ -43,7 +43,7 @@ public class ReservationController {
 
     public void setRoomType(RoomTypes roomType){
         this.roomType = roomType;
-        ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
+        ReservationsDao reservationsDao = ReservationsDaoSQLImpl.getInstance();
         dates = reservationsDao.getAllSchedulesForRooms(roomType.getId());
     }
     public void setRoomPrice(String price){
@@ -151,12 +151,12 @@ public class ReservationController {
             checkOutDatePicker.getStyleClass().add("wrongField");
             System.out.println("Empty check-out date!");
         }else{
-            ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
+            ReservationsDao reservationsDao = ReservationsDaoSQLImpl.getInstance();
             Reservations reservation = new Reservations();
             reservation.setArrivalDate(java.sql.Date.valueOf(arrivalDatePicker.getValue()));
             reservation.setCheckOutDate(java.sql.Date.valueOf(checkOutDatePicker.getValue()));
 
-            RoomsDao roomsDao = new RoomsDaoSQLImpl();
+            RoomsDao roomsDao = RoomsDaoSQLImpl.getInstance();
             List<Rooms> rooms = roomsDao.getRoomsWithSameRoomType(roomType.getId());
 
             reservation.setRoom_id(rooms.get(0).getId());

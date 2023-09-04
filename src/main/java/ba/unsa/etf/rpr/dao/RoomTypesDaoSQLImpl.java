@@ -9,12 +9,26 @@ import java.util.*;
 
 public class RoomTypesDaoSQLImpl extends AbstractDao<RoomTypes> implements RoomTypesDao{
 
+    private static RoomTypesDaoSQLImpl instance = null;
 
     /**
      * Constructor that makes connection to the database with  hidden values needed to make the connection
      */
-    public RoomTypesDaoSQLImpl() {
+    private RoomTypesDaoSQLImpl() {
         super("Room_Types");
+    }
+
+
+    public static RoomTypesDaoSQLImpl getInstance(){
+        if(instance == null){
+            instance = new RoomTypesDaoSQLImpl();
+        }
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance != null)
+            instance = null;
     }
 
     /**

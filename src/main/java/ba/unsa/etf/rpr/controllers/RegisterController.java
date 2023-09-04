@@ -100,7 +100,7 @@ public class RegisterController {
             System.out.println("Password must contain at least 5 characters!");
         }else{
             Guests guest = new Guests();
-            GuestsDao guestDao = new GuestsDaoSQLImpl();
+            GuestsDao guestDao = GuestsDaoSQLImpl.getInstance();
             List<Guests> listOfGuests = guestDao.getAll();
             eMailError.setText("");
             for(Guests x : listOfGuests){

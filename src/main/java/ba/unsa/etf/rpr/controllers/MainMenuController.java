@@ -47,7 +47,7 @@ public class MainMenuController {
         numOfPersons.setCellValueFactory(new PropertyValueFactory<RoomTypes, Integer>("numPersons"));
         roomPrice.setCellValueFactory(new PropertyValueFactory<RoomTypes, Double>("roomPrice"));
 
-        RoomTypesDao roomTypesDao = new RoomTypesDaoSQLImpl();
+        RoomTypesDao roomTypesDao = RoomTypesDaoSQLImpl.getInstance();
         List<RoomTypes> list = roomTypesDao.getAll();
         ObservableList<RoomTypes> roomTypesList = FXCollections.observableArrayList(list);
 
@@ -55,7 +55,7 @@ public class MainMenuController {
     }
 
     public void setListView(int guestId){
-        ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
+        ReservationsDao reservationsDao = ReservationsDaoSQLImpl.getInstance();
         reservations =  reservationsDao.getAllReservationsForGuest(guestId);
         for(Reservations reservation : reservations) {
             listView.getItems().add(String.valueOf(reservation.getId()));
@@ -63,7 +63,7 @@ public class MainMenuController {
     }
 
     public void updateListView(){
-        ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
+        ReservationsDao reservationsDao = ReservationsDaoSQLImpl.getInstance();
         reservations =  reservationsDao.getAllReservationsForGuest(guestId);
         List<String> s = new ArrayList<>();
         listView.setItems((ObservableList<String>) s);

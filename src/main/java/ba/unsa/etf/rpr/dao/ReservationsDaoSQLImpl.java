@@ -11,11 +11,26 @@ import java.util.*;
 
 public class ReservationsDaoSQLImpl extends AbstractDao<Reservations> implements ReservationsDao{
 
+    private static ReservationsDaoSQLImpl instance = null;
+
+
     /**
      * Constructor that makes connection to the database with  hidden values needed to make the connection
      */
-    public ReservationsDaoSQLImpl() {
+    private ReservationsDaoSQLImpl() {
         super("Reservations");
+    }
+
+    public static ReservationsDaoSQLImpl getInstance(){
+        if(instance == null){
+            instance = new ReservationsDaoSQLImpl();
+        }
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance != null)
+            instance = null;
     }
 
     /**

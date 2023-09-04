@@ -26,7 +26,7 @@ public class App
 //        dao.add(guest);
 ////        dao.delete(7);
 //        List<Guests> guests = dao.getAll();
-        RoomsDao daor = new RoomsDaoSQLImpl();
+        RoomsDao daor = RoomsDaoSQLImpl.getInstance();
         List<Rooms> rooms = daor.getRoomsWithSameRoomType(2);
         System.out.println(rooms);
     }

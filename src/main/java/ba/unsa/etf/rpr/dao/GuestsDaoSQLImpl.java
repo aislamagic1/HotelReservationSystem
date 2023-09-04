@@ -8,8 +8,22 @@ import java.util.*;
 
 public class GuestsDaoSQLImpl extends AbstractDao<Guests> implements GuestsDao{
 
-    public GuestsDaoSQLImpl() {
+    private static GuestsDaoSQLImpl instance = null;
+
+    private GuestsDaoSQLImpl() {
         super("Guests");
+    }
+
+    public static GuestsDaoSQLImpl getInstance(){
+        if(instance == null){
+            instance = new GuestsDaoSQLImpl();
+        }
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance != null)
+            instance = null;
     }
 
 

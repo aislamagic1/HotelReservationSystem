@@ -42,7 +42,7 @@ public class ReservationInfoController {
     }
 
     public void cancelReservationBtnClick(ActionEvent actionEvent){
-        ReservationsDao reservationsDao = new ReservationsDaoSQLImpl();
+        ReservationsDao reservationsDao = ReservationsDaoSQLImpl.getInstance();
         reservationsDao.delete(reservation.getId());
         closeWindow();
     }
