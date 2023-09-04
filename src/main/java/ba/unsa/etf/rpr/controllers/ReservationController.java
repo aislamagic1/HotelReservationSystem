@@ -43,6 +43,7 @@ public class ReservationController {
     private List<Pair<LocalDate, LocalDate>> dates;
 
     private int guestId;
+    private double price;
 
     //manager
     private final ReservationsManager reservationsManager = new ReservationsManager();
@@ -52,8 +53,8 @@ public class ReservationController {
         this.roomType = roomType;
         dates =reservationsManager.getAllSchedulesForRooms(roomType.getId());
     }
-    public void setRoomPrice(String price){
-        priceLabel.setText(price);
+    public void setRoomPrice(double price){
+        this.price = price;
     }
 
     public void setGuestId(int id){
@@ -132,6 +133,10 @@ public class ReservationController {
                                 setDisable(true);
                                 setStyle("-fx-background-color: #ffc0cb;");
                             }
+                        }
+                        if(arrivalDatePicker.getValue() != null && checkOutDatePicker.getValue() != null){
+                            long daysBetween = ChronoUnit.DAYS.between(arrivalDatePicker.getValue(), checkOutDatePicker.getValue());
+                            priceLabel.setText(String.valueOf(price * daysBetween));
                         }
                     }
                 };

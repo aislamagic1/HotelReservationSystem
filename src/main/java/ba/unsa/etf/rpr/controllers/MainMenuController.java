@@ -101,7 +101,7 @@ public class MainMenuController {
         if(openMakeReservation) {
             ReservationController reservationController = loader.getController();
             reservationController.setRoomType(tableView.getItems().get(selectedId));
-            reservationController.setRoomPrice(String.valueOf(tableView.getItems().get(selectedId).getRoomPrice()));
+            reservationController.setRoomPrice(tableView.getItems().get(selectedId).getRoomPrice());
             reservationController.setGuestId(guestId);
         }else{
             ReservationInfoController reservationInfoController = loader.getController();
