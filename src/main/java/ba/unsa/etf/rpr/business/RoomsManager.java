@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.business;
 
 import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Reservations;
+import ba.unsa.etf.rpr.domain.RoomTypes;
 import ba.unsa.etf.rpr.domain.Rooms;
 import ba.unsa.etf.rpr.exception.GuestException;
 import ba.unsa.etf.rpr.exception.ReservationsException;
@@ -44,6 +45,12 @@ public class RoomsManager {
 
     public void add(Rooms item) throws RoomsException {
         if(item.getId() != 0) throw new RoomsException("Id must be autoincrement");
+        List<RoomTypes> roomTypes = DaoFactory.roomTypesDao().getAll();
+        boolean hasId = false;
+        for(RoomTypes x : roomTypes){
+            if(x.getId() == item.getRoomTypeID()) hasId = true;
+        }
+        if(!hasId) throw new RoomsException("Id of room type does not exist");
         try{
             DaoFactory.roomsDao().add(item);
         }catch(Exception e){
