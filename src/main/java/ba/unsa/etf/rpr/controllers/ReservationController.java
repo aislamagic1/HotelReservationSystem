@@ -50,7 +50,7 @@ public class ReservationController {
     private final ReservationsManager reservationsManager = new ReservationsManager();
     private final RoomsManager roomsManager = new RoomsManager();
 
-    public void setRoomType(RoomTypes roomType){
+    public void setRoomType(RoomTypes roomType) throws ReservationsException {
         this.roomType = roomType;
         dates = reservationsManager.getAllSchedulesForRooms(roomType.getId());
         List<Rooms> roomsWithSameType = roomsManager.getRoomsWithSameRoomType(roomType.getId());
@@ -67,12 +67,12 @@ public class ReservationController {
     private LocalDate getClosestArrivalDate(LocalDate arrivalDate){
         LocalDate closest = null;
         long closestDifference = Long.MAX_VALUE;
-        for(Pair<LocalDate, LocalDate> date : dates){
-            if(date.getKey().isAfter(arrivalDate)){
-                long difference = ChronoUnit.DAYS.between(arrivalDate, date.getKey());
+        for(LocalDate date : repeatedDates){
+            if(date.isAfter(arrivalDate)){
+                long difference = ChronoUnit.DAYS.between(arrivalDate, date);
                 if(difference < closestDifference){
                     closestDifference = difference;
-                    closest = date.getKey();
+                    closest = date;
                 }
             }
         }
@@ -167,7 +167,7 @@ public class ReservationController {
 
         List<LocalDate> repeatedDates = new ArrayList<>();
         for (Map.Entry<LocalDate, Integer> entry : dateCountMap.entrySet()) {
-            if (entry.getValue() == repetitionCount) {
+            if (entry.getValue() == repetitionCount || entry.getValue() == repetitionCount +1) {
                 repeatedDates.add(entry.getKey());
             }
         }

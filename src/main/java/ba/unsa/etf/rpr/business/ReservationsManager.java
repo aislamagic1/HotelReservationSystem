@@ -60,7 +60,7 @@ public class ReservationsManager {
      * @return item from db
      * @throws ReservationsException
      */
-    public Reservations getById(int id) throws ReservationsException {
+    public Reservations getById(int id) throws Exception {
         try{
             return DaoFactory.reservationsDao().getById(id);
         }
@@ -90,7 +90,7 @@ public class ReservationsManager {
      * @param roomTypeId id of the room type
      * @return list of arrival and check out dates represented with pairs
      */
-    public List<Pair<LocalDate, LocalDate>> getAllSchedulesForRooms(int roomTypeId){
+    public List<Pair<LocalDate, LocalDate>> getAllSchedulesForRooms(int roomTypeId) throws ReservationsException {
         return DaoFactory.reservationsDao().getAllSchedulesForRooms(roomTypeId);
     }
 
