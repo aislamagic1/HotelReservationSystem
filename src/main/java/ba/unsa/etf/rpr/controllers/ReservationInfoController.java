@@ -1,8 +1,10 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.ReservationsManager;
 import ba.unsa.etf.rpr.dao.ReservationsDao;
 import ba.unsa.etf.rpr.dao.ReservationsDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Reservations;
+import ba.unsa.etf.rpr.exception.ReservationsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +26,9 @@ public class ReservationInfoController {
 
     private Reservations reservation;
 
+    //manager
+    private final ReservationsManager reservationsManager = new ReservationsManager();
+
     public void setReservationAndLabels(Reservations val){
         reservation = val;
         roomNumber.setText(String.valueOf(reservation.getRoom_id()));
@@ -41,9 +46,8 @@ public class ReservationInfoController {
         closeWindow();
     }
 
-    public void cancelReservationBtnClick(ActionEvent actionEvent){
-        ReservationsDao reservationsDao = ReservationsDaoSQLImpl.getInstance();
-        reservationsDao.delete(reservation.getId());
+    public void cancelReservationBtnClick(ActionEvent actionEvent) throws ReservationsException {
+        reservationsManager.delete(reservation.getId());
         closeWindow();
     }
 }

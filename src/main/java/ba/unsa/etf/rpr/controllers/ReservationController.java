@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.controllers;
 
+import ba.unsa.etf.rpr.business.ReservationsManager;
 import ba.unsa.etf.rpr.dao.ReservationsDao;
 import ba.unsa.etf.rpr.dao.ReservationsDaoSQLImpl;
 import ba.unsa.etf.rpr.dao.RoomsDao;
@@ -7,6 +8,7 @@ import ba.unsa.etf.rpr.dao.RoomsDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.domain.RoomTypes;
 import ba.unsa.etf.rpr.domain.Rooms;
+import ba.unsa.etf.rpr.exception.ReservationsException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,10 +43,12 @@ public class ReservationController {
 
     private int guestId;
 
+    //manager
+    private final ReservationsManager reservationsManager = new ReservationsManager();
+
     public void setRoomType(RoomTypes roomType){
         this.roomType = roomType;
-        ReservationsDao reservationsDao = ReservationsDaoSQLImpl.getInstance();
-        dates = reservationsDao.getAllSchedulesForRooms(roomType.getId());
+        dates =reservationsManager.getAllSchedulesForRooms(roomType.getId());
     }
     public void setRoomPrice(String price){
         priceLabel.setText(price);
@@ -143,7 +147,7 @@ public class ReservationController {
         closeWindow();
     }
 
-    public void makeReservationButton(ActionEvent actionEvent) {
+    public void makeReservationButton(ActionEvent actionEvent) throws ReservationsException {
         if(arrivalDatePicker.getValue() == null){
             arrivalDatePicker.getStyleClass().add("wrongField");
             System.out.println("Empty arrival date!");
@@ -151,7 +155,6 @@ public class ReservationController {
             checkOutDatePicker.getStyleClass().add("wrongField");
             System.out.println("Empty check-out date!");
         }else{
-            ReservationsDao reservationsDao = ReservationsDaoSQLImpl.getInstance();
             Reservations reservation = new Reservations();
             reservation.setArrivalDate(java.sql.Date.valueOf(arrivalDatePicker.getValue()));
             reservation.setCheckOutDate(java.sql.Date.valueOf(checkOutDatePicker.getValue()));
@@ -162,7 +165,7 @@ public class ReservationController {
             reservation.setRoom_id(rooms.get(0).getId());
             reservation.setGuest(guestId);
 
-            reservationsDao.add(reservation);
+            reservationsManager.add(reservation);
             closeWindow();
         }
 
