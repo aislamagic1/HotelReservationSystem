@@ -15,7 +15,6 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
   <padding>
     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -43,7 +42,7 @@
         <Font size="14.0" />
       </font>
     </Label>
-    <Label prefHeight="30.0" prefWidth="117.0" text="Room Type:" GridPane.rowIndex="1">
+    <Label prefHeight="30.0" prefWidth="117.0" text="Arrival Date:" GridPane.rowIndex="1">
       <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </padding>
@@ -54,7 +53,7 @@
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>
     </Label>
-    <Label fx:id="roomType" prefHeight="46.0" prefWidth="246.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+    <Label prefHeight="30.0" prefWidth="117.0" text="Check-out Date:" GridPane.rowIndex="2">
       <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </padding>
@@ -65,7 +64,7 @@
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>
     </Label>
-    <Label prefHeight="30.0" prefWidth="117.0" text="Arrival Date:" GridPane.rowIndex="2">
+    <Label fx:id="arrivalDate" prefHeight="46.0" prefWidth="246.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
       <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </padding>
@@ -76,7 +75,7 @@
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>
     </Label>
-    <Label prefHeight="30.0" prefWidth="117.0" text="Check-out Date:" GridPane.rowIndex="3">
+    <Label fx:id="checkOutDate" prefHeight="46.0" prefWidth="246.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
       <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </padding>
@@ -87,29 +86,7 @@
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>
     </Label>
-    <Label fx:id="arrivalDate" prefHeight="46.0" prefWidth="246.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-      <padding>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-      </padding>
-      <font>
-        <Font size="14.0" />
-      </font>
-      <GridPane.margin>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-      </GridPane.margin>
-    </Label>
-    <Label fx:id="checkOutDate" prefHeight="46.0" prefWidth="246.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-      <padding>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-      </padding>
-      <font>
-        <Font size="14.0" />
-      </font>
-      <GridPane.margin>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-      </GridPane.margin>
-    </Label>
-    <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeBtnClick" prefHeight="27.0" prefWidth="264.0" text="Close" GridPane.rowIndex="4">
+    <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeBtnClick" prefHeight="27.0" prefWidth="264.0" text="Close" GridPane.rowIndex="3">
       <GridPane.margin>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin>
@@ -117,7 +94,7 @@
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </padding>
     </Button>
-    <Button mnemonicParsing="false" onAction="#cancelReservationBtnClick" prefHeight="27.0" prefWidth="264.0" text="Cancel Reservation" GridPane.columnIndex="1" GridPane.rowIndex="4">
+    <Button mnemonicParsing="false" onAction="#cancelReservationBtnClick" prefHeight="27.0" prefWidth="264.0" text="Cancel Reservation" GridPane.columnIndex="1" GridPane.rowIndex="3">
       <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </padding>
