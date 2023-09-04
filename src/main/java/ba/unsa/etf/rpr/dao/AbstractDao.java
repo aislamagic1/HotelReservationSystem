@@ -1,9 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Idable;
-import ba.unsa.etf.rpr.domain.Reservations;
 
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.sql.*;
 import java.util.*;
@@ -30,7 +28,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
         if(AbstractDao.connection == null){
             FileReader fileReader = null;
             try{
-                fileReader = new FileReader("src/dataBase.properties");
+                fileReader = new FileReader("dataBase.properties");
                 Properties property = new Properties();
                 property.load(fileReader);
                 AbstractDao.connection = DriverManager.getConnection(property.getProperty("url"), property.getProperty("username"), property.getProperty("password"));
