@@ -65,6 +65,12 @@ public class GuestManager {
         }
     }
 
+    /**
+     * Udpate item id db
+     * @param item to be updated
+     * @return updated item
+     * @throws GuestException
+     */
     public Guests update(Guests item) throws GuestException {
         try{
             return DaoFactory.guestsDao().update(item);
