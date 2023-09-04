@@ -79,7 +79,22 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T> {
      * @return object with given id
      */
     public T getById(int id){
-        return  executeQueryUnique("SELECT * FROM " + this.tableName + " WHERE id = ?", new Object[]{id});
+        String query = "SELECT * FROM " + this.tableName + " WHERE id = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1,id);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                T item = row2object(rs);
+                rs.close();
+                return item;
+            }
+            else {
+                throw new Exception("Not found!");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
