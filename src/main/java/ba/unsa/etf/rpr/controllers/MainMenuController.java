@@ -8,6 +8,7 @@ import ba.unsa.etf.rpr.dao.RoomTypesDao;
 import ba.unsa.etf.rpr.dao.RoomTypesDaoSQLImpl;
 import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.domain.RoomTypes;
+import ba.unsa.etf.rpr.exception.ReservationsException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -93,7 +94,7 @@ public class MainMenuController {
         System.out.println("Returning to login screen.");
     }
 
-    private void openNewWindow(String title, String file, Boolean openMakeReservation, int selectedId) throws IOException {
+    private void openNewWindow(String title, String file, Boolean openMakeReservation, int selectedId) throws IOException, ReservationsException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
         Parent root = loader.load();
@@ -122,14 +123,14 @@ public class MainMenuController {
         returnToLogoutScreen();
     }
 
-    public void makeReservationBtnClick(ActionEvent actionEvent) throws IOException {
+    public void makeReservationBtnClick(ActionEvent actionEvent) throws IOException, ReservationsException {
         int selectedId = tableView.getSelectionModel().getSelectedIndex();
         if(selectedId != -1) {
             openNewWindow("Reservation", "/fxml/reservation.fxml", true, selectedId);
         }
     }
 
-    public void viewDetailsBtnClick(ActionEvent actionEvent) throws IOException {
+    public void viewDetailsBtnClick(ActionEvent actionEvent) throws IOException, ReservationsException {
         int selectedId = listView.getSelectionModel().getSelectedIndex();
         if(selectedId != -1) {
             openNewWindow("Reservation Info", "/fxml/reservationInfo.fxml", false, selectedId);
