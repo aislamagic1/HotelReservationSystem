@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.controllers;
 
 import ba.unsa.etf.rpr.business.ReservationsManager;
+import ba.unsa.etf.rpr.business.RoomTypesManager;
 import ba.unsa.etf.rpr.dao.ReservationsDao;
 import ba.unsa.etf.rpr.dao.ReservationsDaoSQLImpl;
 import ba.unsa.etf.rpr.dao.RoomTypesDao;
@@ -44,6 +45,7 @@ public class MainMenuController {
 
     //manager
     private final ReservationsManager reservationsManager = new ReservationsManager();
+    private final RoomTypesManager roomTypesManager = new RoomTypesManager();
 
     @FXML
     public void initialize(){
@@ -51,8 +53,7 @@ public class MainMenuController {
         numOfPersons.setCellValueFactory(new PropertyValueFactory<RoomTypes, Integer>("numPersons"));
         roomPrice.setCellValueFactory(new PropertyValueFactory<RoomTypes, Double>("roomPrice"));
 
-        RoomTypesDao roomTypesDao = RoomTypesDaoSQLImpl.getInstance();
-        List<RoomTypes> list = roomTypesDao.getAll();
+        List<RoomTypes> list = roomTypesManager.getAll();
         ObservableList<RoomTypes> roomTypesList = FXCollections.observableArrayList(list);
 
         tableView.setItems(roomTypesList);
