@@ -94,6 +94,12 @@ public class GuestManager {
         }
     }
 
+    /**
+     * Method that finds guest from db with given email and password
+     * @param email email of guest account
+     * @param password password of guest account
+     * @return guest object
+     */
     public Guests getGuestByEmailAndPassword(String email, String password){
         return DaoFactory.guestsDao().getGuestByEmailAndPassword(email, password);
     }

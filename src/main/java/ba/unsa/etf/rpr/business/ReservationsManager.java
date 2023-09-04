@@ -5,7 +5,9 @@ import ba.unsa.etf.rpr.domain.Guests;
 import ba.unsa.etf.rpr.domain.Reservations;
 import ba.unsa.etf.rpr.exception.GuestException;
 import ba.unsa.etf.rpr.exception.ReservationsException;
+import javafx.util.Pair;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -80,5 +82,24 @@ public class ReservationsManager {
         catch(Exception e){
             throw new ReservationsException("Rezervacija ne postoji ili podaci nisu validni!");
         }
+    }
+
+    /**
+     * Method finds all arrival and check out dates from database that belong to a
+     * reservation to all room's with the given room type
+     * @param roomTypeId id of the room type
+     * @return list of arrival and check out dates represented with pairs
+     */
+    public List<Pair<LocalDate, LocalDate>> getAllSchedulesForRooms(int roomTypeId){
+        return DaoFactory.reservationsDao().getAllSchedulesForRooms(roomTypeId);
+    }
+
+    /**
+     * Method that finds all reservations for one guest from the db
+     * @param guest guest object
+     * @return list of reservations for the guest
+     */
+    public List<Reservations> getAllReservationsForGuest(Integer guest){
+        return DaoFactory.reservationsDao().getAllReservationsForGuest(guest);
     }
 }
